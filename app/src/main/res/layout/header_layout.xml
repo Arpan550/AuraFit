@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="start"
+    android:gravity="bottom"
+    android:padding="30dp"
+    android:background="@drawable/bg_header_layout">
+
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/img"
+        android:layout_marginTop="40dp"
+        android:scaleType="centerCrop"
+        android:layout_gravity="start"
+        android:contentDescription="@string/profile_image"/>
+
+    <TextView
+        android:id="@+id/usernameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/your_name"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_gravity="start"/>
+
+    <TextView
+        android:id="@+id/emailTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/email_example_com"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:layout_gravity="start"/>
+</LinearLayout>

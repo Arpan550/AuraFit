@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "176750639715",
+    "project_id": "aurafit-b2119",
+    "storage_bucket": "aurafit-b2119.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:176750639715:android:9a4640e7d8c11e3b199656",
+        "android_client_info": {
+          "package_name": "com.example.aurafit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "176750639715-h8qvgee63ov3b7aocl0s5sd52uham0g4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aurafit",
+            "certificate_hash": "2d14ac044d485e00294d5cfe7976643446e2d8db"
+          }
+        },
+        {
+          "client_id": "176750639715-30mtp04nf2elqqro7oj1jm6r90c5jupm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANj0QUUNnIQrXVCGNgqSM53TK0Yuk8b58"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "176750639715-30mtp04nf2elqqro7oj1jm6r90c5jupm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
