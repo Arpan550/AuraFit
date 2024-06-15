@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_home"
+        android:title="@string/home"
+        android:icon="@drawable/ic_home" />
+    <item android:id="@+id/nav_friends_community"
+        android:title="@string/friends_amp_community"
+        android:icon="@drawable/ic_community" />
+    <item android:id="@+id/nav_settings"
+        android:title="@string/settings"
+        android:icon="@drawable/ic_settings" />
+    <item android:id="@+id/nav_help_support"
+        android:title="@string/help_amp_support"
+        android:icon="@drawable/ic_help_center" />
+    <item android:id="@+id/nav_about"
+        android:title="@string/about"
+        android:icon="@drawable/ic_about" />
+    <item android:id="@+id/nav_sign_out"
+        android:title="@string/sign_out"
+        android:icon="@drawable/ic_sign_out" />
+</menu>

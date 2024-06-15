@@ -32,6 +32,15 @@
     <string name="choose_from_gallery">Choose from Gallery</string>
     <string name="choose_your_profile_picture">Choose your profile picture</string>
     <string name="reset_password">Reset Password</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="about">About</string>
+    <string name="help_amp_support"><![CDATA[Help & Support]]></string>
+    <string name="settings">Settings</string>
+    <string name="friends_amp_community"><![CDATA[Friends & Community]]></string>
+    <string name="physical_fitness">Physical Fitness</string>
+    <string name="mental_fitness">Mental Fitness</string>
+    <string name="analytics">Analytics</string>
+    <string name="home">Home</string>
 
 
 </resources>

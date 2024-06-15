@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_physical_health"
+        android:title="@string/physical_fitness"
+        android:icon="@drawable/ic_physical_fitness" />
+    <item android:id="@+id/nav_mental_health"
+        android:title="@string/mental_fitness"
+        android:icon="@drawable/ic_mental_fitness" />
+    <item android:id="@+id/nav_progress"
+        android:title="@string/analytics"
+        android:icon="@drawable/ic_analysis" />
+</menu>

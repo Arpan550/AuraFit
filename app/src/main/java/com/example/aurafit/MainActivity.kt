@@ -9,6 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.aurafit.authentication.LoginActivity
 import com.example.aurafit.databinding.ActivityMainBinding
+import com.example.aurafit.drawer.AboutActivity
+import com.example.aurafit.drawer.CommunitySupportActivity
+import com.example.aurafit.drawer.HelpSupportActivity
+import com.example.aurafit.drawer.SettingsActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
@@ -71,8 +75,27 @@ class MainActivity : AppCompatActivity() {
 
         mainBinding.navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.sign_out -> {
-                    // Handle sign out item click
+                R.id.nav_home -> {
+                    startActivity(Intent(this, MainActivity::class.java))
+                    true
+                }
+                R.id.nav_friends_community -> {
+                    startActivity(Intent(this, CommunitySupportActivity::class.java))
+                    true
+                }
+                R.id.nav_help_support -> {
+                    startActivity(Intent(this, HelpSupportActivity::class.java))
+                    true
+                }
+                R.id.nav_settings -> {
+                    startActivity(Intent(this, SettingsActivity::class.java))
+                    true
+                }
+                R.id.nav_about -> {
+                    startActivity(Intent(this, AboutActivity::class.java))
+                    true
+                }
+                R.id.nav_sign_out -> {
                     FirebaseAuth.getInstance().signOut()
                     clearUserDataAndStartLoginActivity()
                     true
