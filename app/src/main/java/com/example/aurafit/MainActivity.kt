@@ -6,8 +6,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.aurafit.authentication.LoginActivity
+import com.example.aurafit.bottom_nav_fragments.AnalyticsFragment
+import com.example.aurafit.bottom_nav_fragments.MentalHealthFragment
+import com.example.aurafit.bottom_nav_fragments.PhysicalHealthFragment
 import com.example.aurafit.databinding.ActivityMainBinding
 import com.example.aurafit.drawer.AboutActivity
 import com.example.aurafit.drawer.CommunitySupportActivity
@@ -33,8 +37,11 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(mainBinding.appBarMain.toolbar)
 
         val toggle = ActionBarDrawerToggle(
-            this, mainBinding.drawerLayout, mainBinding.appBarMain.toolbar,
-            R.string.OpenDrawer, R.string.CloseDrawer
+            this,
+            mainBinding.drawerLayout,
+            mainBinding.appBarMain.toolbar,
+            R.string.OpenDrawer,
+            R.string.CloseDrawer
         )
 
         mainBinding.drawerLayout.addDrawerListener(toggle)
@@ -45,8 +52,7 @@ class MainActivity : AppCompatActivity() {
 
         // Load user data from Firestore
         currentUser?.uid?.let { userId ->
-            db.collection("users").document(userId).get()
-                .addOnSuccessListener { document ->
+            db.collection("users").document(userId).get().addOnSuccessListener { document ->
                     val name = document.getString("name")
                     val email = document.getString("email")
                     val photoUrl = document.getString("photoUrl")
@@ -62,13 +68,11 @@ class MainActivity : AppCompatActivity() {
                     emailTV.text = email
 
                     // Load profile image using Glide
-                    Glide.with(this)
-                        .load(photoUrl) // Load profile image URL from Firestore
+                    Glide.with(this).load(photoUrl) // Load profile image URL from Firestore
                         .placeholder(R.drawable.img) // Placeholder image while loading
                         .error(R.drawable.img) // Error image if loading fails
                         .into(profileImage)
-                }
-                .addOnFailureListener { e ->
+                }.addOnFailureListener { e ->
                     // Handle failure
                 }
         }
@@ -79,22 +83,27 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this, MainActivity::class.java))
                     true
                 }
+
                 R.id.nav_friends_community -> {
                     startActivity(Intent(this, CommunitySupportActivity::class.java))
                     true
                 }
+
                 R.id.nav_help_support -> {
                     startActivity(Intent(this, HelpSupportActivity::class.java))
                     true
                 }
+
                 R.id.nav_settings -> {
                     startActivity(Intent(this, SettingsActivity::class.java))
                     true
                 }
+
                 R.id.nav_about -> {
                     startActivity(Intent(this, AboutActivity::class.java))
                     true
                 }
+
                 R.id.nav_sign_out -> {
                     FirebaseAuth.getInstance().signOut()
                     clearUserDataAndStartLoginActivity()
@@ -104,7 +113,46 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+
+
+        //Bottom navigation handling
+        // Load AnalyticsFragment by default
+        if (savedInstanceState == null) {
+            loadFragment(AnalyticsFragment())
+            mainBinding.appBarMain.contentMain.bottomNavigation.selectedItemId=R.id.nav_analytics
+        }
+
+        setupBottomNavigation()
+
     }
+
+    private fun setupBottomNavigation() {
+       mainBinding.appBarMain.contentMain.bottomNavigation.setOnItemSelectedListener { menuItem ->
+           when(menuItem.itemId) {
+               R.id.nav_physical_health -> {
+                   loadFragment(PhysicalHealthFragment())
+                   true
+               }
+               R.id.nav_mental_health -> {
+                   loadFragment(MentalHealthFragment())
+                   true
+               }
+               R.id.nav_analytics -> {
+                   loadFragment(AnalyticsFragment())
+                   true
+               }
+               else -> false
+           }
+       }
+    }
+
+    private fun loadFragment(fragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(mainBinding.appBarMain.contentMain.navHostFragment.id, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
 
     private fun clearUserDataAndStartLoginActivity() {
         // Clear all data related to user session

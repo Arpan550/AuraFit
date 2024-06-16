@@ -10,6 +10,8 @@
         android:orientation="vertical">
 
         <!-- Main content area where fragments will be swapped -->
+
+        <!-- Bottom navigation bar -->
         <FrameLayout
             android:id="@+id/nav_host_fragment"
             android:layout_width="match_parent"
@@ -17,7 +19,6 @@
             android:layout_weight="1"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-        <!-- Bottom navigation bar -->
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"

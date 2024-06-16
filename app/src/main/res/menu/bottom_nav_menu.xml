@@ -5,7 +5,7 @@
     <item android:id="@+id/nav_mental_health"
         android:title="@string/mental_fitness"
         android:icon="@drawable/ic_mental_fitness" />
-    <item android:id="@+id/nav_progress"
+    <item android:id="@+id/nav_analytics"
         android:title="@string/analytics"
         android:icon="@drawable/ic_analysis" />
 </menu>
