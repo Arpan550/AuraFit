@@ -15,6 +15,9 @@
         android:theme="@style/Theme.AuraFit"
         tools:targetApi="31">
         <activity
+            android:name=".MusicActivity"
+            android:exported="false" />
+        <activity
             android:name=".drawer.AboutActivity"
             android:exported="false" />
         <activity
@@ -56,7 +59,7 @@
             android:exported="true" />
         <activity
             android:name=".authentication.LoginActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
