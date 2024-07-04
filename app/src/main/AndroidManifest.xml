@@ -15,6 +15,10 @@
         android:theme="@style/Theme.AuraFit"
         tools:targetApi="31">
         <activity
+            android:name=".bottom_nav_fragments.physical_fitness.ExerciseActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AuraFit" />
+        <activity
             android:name=".MusicActivity"
             android:exported="false" />
         <activity
@@ -25,7 +29,7 @@
             android:exported="false" />
         <activity
             android:name=".drawer.HelpSupportActivity"
-            android:exported="false" />
+            android:exported="true"></activity>
         <activity
             android:name=".drawer.SettingsActivity"
             android:exported="false" /> <!-- Facebook SDK Meta-data -->
@@ -41,16 +45,7 @@
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" />
         <activity
             android:name="com.facebook.CustomTabActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="@string/fb_login_protocol_scheme" />
-            </intent-filter>
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".authentication.DataConfirmationActivity"
             android:exported="false" />
@@ -72,6 +67,14 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
         </activity>
     </application>
 

@@ -5,4 +5,11 @@
     <color name="button_background">#2E0963</color>
     <color name="button_background_pressed">#110234</color>
     <color name="light_deepblue">#6FC3C9EF</color>
+
+    <color name="background_color">#F0F0F0</color>
+    <color name="text_color">#333333</color>
+    <color name="secondary_text_color">#666666</color>
+    <color name="accent_color">#FF5722</color>
+
+
 </resources>

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.aurafit.MusicActivity
+import com.example.aurafit.bottom_nav_fragments.physical_fitness.ExerciseActivity
 import com.example.aurafit.databinding.FragmentPhysicalHealthBinding
 
 class PhysicalHealthFragment : Fragment() {
@@ -25,11 +26,16 @@ class PhysicalHealthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.exerciseCont.setOnClickListener {
+            val intent=Intent(activity, ExerciseActivity::class.java)
+            startActivity(intent)
+        }
         // Handle click event for the music card
         binding.musicCont.setOnClickListener {
             val intent = Intent(activity, MusicActivity::class.java)
             startActivity(intent)
         }
+
     }
 
     override fun onDestroyView() {

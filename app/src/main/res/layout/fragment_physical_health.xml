@@ -40,6 +40,7 @@
                 app:cardElevation="4dp">
 
                 <LinearLayout
+                    android:id="@+id/exercise_cont"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

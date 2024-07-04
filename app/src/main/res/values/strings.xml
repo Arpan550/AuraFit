@@ -53,6 +53,12 @@
     <string name="emotional_wellbeing">Wellbeing</string>
     <string name="therapy">Therapy</string>
     <string name="counselling">Counselling</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+
+    <string name="get_started">Get Started</string>
+    <string name="second_fragment2_label">Second Fragment 2</string>
 
 
 </resources>
