@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".bottom_nav_fragments.physical_fitness.exercise.StepsFragment">
+
+    <!-- Steps TextView -->
+    <TextView
+        android:id="@+id/stepsTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="@android:color/black"
+        android:padding="8dp"
+        android:gravity="start"
+        android:layout_marginTop="20dp"
+        android:text="Steps will appear here" />
+
+</LinearLayout>

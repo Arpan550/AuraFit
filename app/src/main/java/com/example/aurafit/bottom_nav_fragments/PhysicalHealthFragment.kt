@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.aurafit.MusicActivity
+import com.example.aurafit.bottom_nav_fragments.physical_fitness.diet_plan.DietPlanActivity
 import com.example.aurafit.bottom_nav_fragments.physical_fitness.exercise.ExerciseActivity
 import com.example.aurafit.databinding.FragmentPhysicalHealthBinding
 
@@ -28,6 +29,10 @@ class PhysicalHealthFragment : Fragment() {
 
         binding.exerciseCont.setOnClickListener {
             val intent=Intent(activity, ExerciseActivity::class.java)
+            startActivity(intent)
+        }
+        binding.dietPlanCont.setOnClickListener {
+            val intent=Intent(activity, DietPlanActivity::class.java)
             startActivity(intent)
         }
         // Handle click event for the music card

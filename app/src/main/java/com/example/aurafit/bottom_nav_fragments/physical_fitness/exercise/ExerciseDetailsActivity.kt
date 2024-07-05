@@ -1,36 +1,38 @@
 package com.example.aurafit.bottom_nav_fragments.physical_fitness.exercise
 
+import android.content.Intent
 import android.os.Bundle
-import android.os.CountDownTimer
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import com.bumptech.glide.Glide
 import com.example.aurafit.R
+import com.example.aurafit.adapters.ViewPagerExerciseAdapter
 import com.example.aurafit.databinding.ActivityExerciseDetailsBinding
+import java.util.ArrayList
 
 class ExerciseDetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityExerciseDetailsBinding
-    private lateinit var countDownTimer: CountDownTimer
-    private var isTimerRunning = false
-    private val timerStartTimeInMillis: Long = 60000 // 1 minute in milliseconds
-    private var timeLeftInMillis = timerStartTimeInMillis
+    private lateinit var exerciseSteps: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityExerciseDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        enableEdgeToEdge() // Enable edge-to-edge display
+        // Enable edge-to-edge display
+        enableEdgeToEdge()
 
         // Retrieve data from intent extras
+        val intent = intent
         val exerciseTitle = intent.getStringExtra("exercise_name")
         val exerciseGifUrl = intent.getStringExtra("exercise_gif_url")
-        val exerciseSteps = intent.getStringArrayListExtra("exercise_steps")
+        exerciseSteps = intent.getStringArrayListExtra("exercise_steps") ?: ArrayList()
 
         // Populate UI elements with exercise details
         binding.exerciseTitleTextView.text = exerciseTitle
-        binding.exerciseStepsTextView.text = formatSteps(exerciseSteps)
 
         // Load GIF using Glide
         Glide.with(this)
@@ -38,62 +40,12 @@ class ExerciseDetailsActivity : AppCompatActivity() {
             .load(exerciseGifUrl)
             .into(binding.exerciseGifImageView)
 
-        // Initialize timer view
-        updateTimerUI(timerStartTimeInMillis)
+        // Initialize ViewPager
+        val myAdapter = ViewPagerExerciseAdapter(supportFragmentManager, formatSteps(exerciseSteps))
+        binding.viewpager.adapter = myAdapter
 
-        // Start button click listener
-        binding.startButton.setOnClickListener {
-            if (isTimerRunning) {
-                pauseTimer()
-            } else {
-                startTimer()
-            }
-        }
-
-        // Reset button click listener
-        binding.resetButton.setOnClickListener {
-            resetTimer()
-        }
-    }
-
-    private fun startTimer() {
-        countDownTimer = object : CountDownTimer(timeLeftInMillis, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                timeLeftInMillis = millisUntilFinished
-                updateTimerUI(timeLeftInMillis)
-            }
-
-            override fun onFinish() {
-                isTimerRunning = false
-                binding.startButton.text = getString(R.string.start)
-                updateTimerUI(0)
-            }
-        }.start()
-
-        isTimerRunning = true
-        binding.startButton.text = getString(R.string.pause)
-    }
-
-    private fun pauseTimer() {
-        countDownTimer.cancel()
-        isTimerRunning = false
-        binding.startButton.text = getString(R.string.start)
-    }
-
-    private fun resetTimer() {
-        countDownTimer.cancel()
-        isTimerRunning = false
-        timeLeftInMillis = timerStartTimeInMillis
-        updateTimerUI(timerStartTimeInMillis)
-        binding.startButton.text = getString(R.string.start)
-    }
-
-    private fun updateTimerUI(millisUntilFinished: Long) {
-        val seconds = (millisUntilFinished / 1000).toInt()
-        val minutes = seconds / 60
-        val remainingSeconds = seconds % 60
-        val timeLeftFormatted = String.format("%02d:%02d", minutes, remainingSeconds)
-        binding.timer.text = timeLeftFormatted
+        // Setup tab layout
+        binding.tab.setupWithViewPager(binding.viewpager)
     }
 
     private fun formatSteps(steps: ArrayList<String>?): String {
@@ -102,5 +54,15 @@ class ExerciseDetailsActivity : AppCompatActivity() {
             stringBuilder.append("${index + 1}. $step\n\n")
         }
         return stringBuilder.toString()
+    }
+
+    private fun enableEdgeToEdge() {
+        // Enable edge-to-edge display if supported
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            window.decorView.windowInsetsController?.apply {
+                hide(android.view.WindowInsets.Type.statusBars() or android.view.WindowInsets.Type.navigationBars())
+                systemBarsBehavior = android.view.WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            }
+        }
     }
 }

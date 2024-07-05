@@ -43,7 +43,7 @@
     <string name="home">Home</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="exercise">Exercise</string>
+    <string name="exercise">Exercises</string>
     <string name="diet_plan">Diet Plan</string>
     <string name="status">Status</string>
     <string name="resources">Resources</string>
