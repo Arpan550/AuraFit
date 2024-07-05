@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_header_layout"
-    tools:context="com.example.aurafit.bottom_nav_fragments.physical_fitness.FirstFragment">
+    tools:context="com.example.aurafit.bottom_nav_fragments.physical_fitness.exercise.FirstFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

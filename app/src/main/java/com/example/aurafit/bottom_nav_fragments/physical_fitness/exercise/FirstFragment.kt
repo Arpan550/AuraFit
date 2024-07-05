@@ -1,4 +1,4 @@
-package com.example.aurafit.bottom_nav_fragments.physical_fitness
+package com.example.aurafit.bottom_nav_fragments.physical_fitness.exercise
 
 import android.os.Bundle
 import android.view.LayoutInflater

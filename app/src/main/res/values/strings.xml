@@ -59,6 +59,9 @@
 
     <string name="get_started">Get Started</string>
     <string name="second_fragment2_label">Second Fragment 2</string>
+    <string name="start">Start</string>
+    <string name="reset">Reset</string>
+    <string name="pause">Pause</string>
 
 
 </resources>

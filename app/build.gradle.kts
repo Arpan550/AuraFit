@@ -64,4 +64,6 @@ dependencies {
     implementation("com.facebook.android:facebook-login:latest.release")
     implementation("com.facebook.android:facebook-android-sdk:latest.release")
     implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.28")
+
+    implementation("com.github.raag:TimerView:v0.5.8beta")
 }

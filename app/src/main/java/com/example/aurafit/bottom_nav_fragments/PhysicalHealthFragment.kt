@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.aurafit.MusicActivity
-import com.example.aurafit.bottom_nav_fragments.physical_fitness.ExerciseActivity
+import com.example.aurafit.bottom_nav_fragments.physical_fitness.exercise.ExerciseActivity
 import com.example.aurafit.databinding.FragmentPhysicalHealthBinding
 
 class PhysicalHealthFragment : Fragment() {

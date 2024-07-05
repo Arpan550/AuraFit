@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@color/white">
+
+        <!-- Exercise GIF ImageView -->
+        <ImageView
+            android:id="@+id/exerciseGifImageView"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:contentDescription="Exercise GIF"
+            android:scaleType="fitCenter" />
+
+        <!-- Exercise Title TextView -->
+        <TextView
+            android:id="@+id/exerciseTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="5dp"
+            android:paddingBottom="8dp"
+            android:text="Exercise Title"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <!-- Exercise Description TextView -->
+        <TextView
+            android:id="@+id/exerciseDescriptionTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginTop="20dp" />
+
+        <!-- Steps Title TextView -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Steps"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:paddingTop="20dp"
+            android:paddingBottom="8dp" />
+
+        <!-- Steps TextView -->
+        <TextView
+            android:id="@+id/exerciseStepsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginTop="10dp" />
+
+        <!-- TimerView -->
+        <com.raagpc.timerview.TimerView
+            android:id="@+id/timer"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:textSize="30sp"
+            android:layout_marginTop="35dp"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <!-- Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="20dp">
+
+            <!-- Start/Pause Button -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/startButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/start"
+                android:textColor="@color/white"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/button_background"
+                android:textStyle="bold"/>
+
+            <!-- Reset Button -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/resetButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reset"
+                android:background="@drawable/button_background"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
