@@ -11,5 +11,10 @@
     <color name="secondary_text_color">#666666</color>
     <color name="accent_color">#FF5722</color>
 
+    <color name="orange_underweight">#FFA500</color>
+    <color name="green_normalweight">#00FF00</color>
+    <color name="yellow_overweight">#FFFF00</color>
+    <color name="red_obese">#FF0000</color>
+
 
 </resources>

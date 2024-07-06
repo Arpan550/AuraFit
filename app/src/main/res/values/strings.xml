@@ -62,6 +62,9 @@
     <string name="start">Start</string>
     <string name="reset">Reset</string>
     <string name="pause">Pause</string>
+    <string name="bmi_diet_description">Provide diet plans tailored to users\' BMI categories (underweight, normal weight, overweight, etc.).</string>
+    <string name="bmi_diet_title">BMI Diet</string>
+    <string name="mindfulness">Mindfulness</string>
 
 
 </resources>

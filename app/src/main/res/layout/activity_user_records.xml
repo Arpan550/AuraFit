@@ -1,0 +1,23 @@
+<!-- activity_user_records.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Add Record Section -->
+    <Button
+        android:id="@+id/btnAddRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Record"
+        android:layout_margin="16dp" />
+
+    <!-- View Record Section -->
+    <Button
+        android:id="@+id/btnViewRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Record"
+        android:layout_margin="16dp" />
+
+</LinearLayout>

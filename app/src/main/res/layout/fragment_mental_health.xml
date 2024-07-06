@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="2dp">
@@ -18,15 +19,17 @@
             android:scaleType="fitCenter"
             android:src="@drawable/bg_mental_fitness"
             app:tint="@color/button_background_pressed" />
+
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:alignmentMode="alignMargins"
             android:columnCount="2"
             android:columnOrderPreserved="false"
-            android:rowCount="5">
+            android:rowCount="4"
+            android:padding="8dp">
 
-            <!-- CardView for Mindfulness and Meditation -->
+            <!-- CardView for Meditation -->
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -34,25 +37,21 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
                 app:cardCornerRadius="15dp"
-                android:clickable="true"
-                android:focusable="true"
                 app:cardElevation="4dp">
 
                 <LinearLayout
+                    android:id="@+id/meditation_cont"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@drawable/button_background"
                     android:gravity="center"
-                    android:clickable="true"
-                    android:focusable="true"
                     android:orientation="horizontal"
                     android:padding="16dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
                         android:layout_marginEnd="15dp"
                         android:src="@drawable/ic_meditation" />
 
@@ -75,25 +74,21 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
                 app:cardCornerRadius="15dp"
-                android:clickable="true"
-                android:focusable="true"
                 app:cardElevation="4dp">
 
                 <LinearLayout
+                    android:id="@+id/wellbeing_cont"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@drawable/button_background"
                     android:gravity="center"
-                    android:clickable="true"
-                    android:focusable="true"
                     android:orientation="horizontal"
                     android:padding="16dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
                         android:layout_marginEnd="15dp"
                         android:src="@drawable/ic_emotional_wellbeing" />
 
@@ -108,7 +103,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- CardView for Therapy -->
+            <!-- CardView for Resources -->
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -116,25 +111,58 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
                 app:cardCornerRadius="15dp"
-                android:clickable="true"
-                android:focusable="true"
                 app:cardElevation="4dp">
 
                 <LinearLayout
+                    android:id="@+id/resources_cont"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@drawable/button_background"
                     android:gravity="center"
-                    android:clickable="true"
-                    android:focusable="true"
                     android:orientation="horizontal"
                     android:padding="16dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="15dp"
+                        android:src="@drawable/ic_educational_resources" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/resources"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- CardView for Therapy Connect -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowSpan="2"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:id="@+id/therapy_cont"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/button_background"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginEnd="15dp"
                         android:src="@drawable/ic_therapy_n_counselling" />
 
@@ -149,7 +177,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- CardView for Counseling -->
+            <!-- CardView for Mindfulness Exercises -->
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -157,41 +185,38 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
                 app:cardCornerRadius="15dp"
-                android:clickable="true"
-                android:focusable="true"
                 app:cardElevation="4dp">
 
                 <LinearLayout
+                    android:id="@+id/mindfulness_cont"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@drawable/button_background"
                     android:gravity="center"
-                    android:clickable="true"
-                    android:focusable="true"
                     android:orientation="horizontal"
                     android:padding="16dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
                         android:layout_marginEnd="15dp"
-                        android:src="@drawable/ic_therapy_n_counselling" />
+                        android:src="@drawable/ic_mental_fitness"
+                        app:tint="@color/white" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/counselling"
+                        android:text="@string/mindfulness"
                         android:textColor="@color/white"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-
-            <!-- CardView for Mental Health Tracking -->
+            <!-- CardView for Gratitude Journal -->
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -199,32 +224,28 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
                 app:cardCornerRadius="15dp"
-                android:clickable="true"
-                android:focusable="true"
                 app:cardElevation="4dp">
 
                 <LinearLayout
+                    android:id="@+id/gratitude_cont"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@drawable/button_background"
                     android:gravity="center"
-                    android:clickable="true"
-                    android:focusable="true"
                     android:orientation="horizontal"
                     android:padding="16dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
                         android:layout_marginEnd="15dp"
-                        android:src="@drawable/ic_stress_management" />
+                        android:src="@drawable/ic_gratitude" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/status"
+                        android:text="Gratitude"
                         android:textColor="@color/white"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -232,46 +253,6 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- CardView for Crisis Resources -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_rowSpan="2"
-                android:layout_columnWeight="1"
-                android:clickable="true"
-                android:focusable="true"
-                android:layout_margin="8dp"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="4dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/button_background"
-                    android:gravity="center"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:orientation="horizontal"
-                    android:padding="16dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="15dp"
-                        android:src="@drawable/ic_educational_resources" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/resources"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
         </GridLayout>
     </LinearLayout>
 </ScrollView>

@@ -66,4 +66,5 @@ dependencies {
     implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.28")
 
     implementation("com.github.raag:TimerView:v0.5.8beta")
+    implementation("com.google.android.exoplayer:exoplayer:2.15.1")
 }
