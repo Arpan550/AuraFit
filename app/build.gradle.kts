@@ -10,6 +10,7 @@ android {
 
     buildFeatures { 
         viewBinding = true
+        dataBinding= true
     }
 
     defaultConfig {
@@ -53,6 +54,8 @@ dependencies {
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.firebase.storage.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.firebase.firestore)
+    implementation(libs.androidx.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

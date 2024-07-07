@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.aurafit.bottom_nav_fragments.mental_fitness.MeditationActivity
 import com.example.aurafit.bottom_nav_fragments.mental_fitness.MindfulnessActivity
+import com.example.aurafit.bottom_nav_fragments.mental_fitness.SelfAssessmentActivity
 import com.example.aurafit.databinding.FragmentMentalHealthBinding
 
 class MentalHealthFragment : Fragment() {
@@ -42,7 +43,8 @@ class MentalHealthFragment : Fragment() {
         }
 
         binding.therapyCont.setOnClickListener {
-
+            val intent=Intent(requireContext(), SelfAssessmentActivity::class.java)
+            startActivity(intent)
         }
 
         binding.mindfulnessCont.setOnClickListener {

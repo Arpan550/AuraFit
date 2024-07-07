@@ -15,13 +15,20 @@
         android:theme="@style/Theme.AuraFit"
         tools:targetApi="31">
         <activity
+            android:name=".QuestionUploadToFireStore"
+            android:exported="true" >
+        </activity>
+        <activity
+            android:name=".bottom_nav_fragments.mental_fitness.AssessmentDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".bottom_nav_fragments.mental_fitness.SelfAssessmentActivity"
+            android:exported="false" />
+        <activity
             android:name=".bottom_nav_fragments.mental_fitness.MeditationPlayerActivity"
             android:exported="false" />
         <activity
             android:name=".bottom_nav_fragments.mental_fitness.MeditationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".bottom_nav_fragments.mental_fitness.MindFulnessExerciseDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".bottom_nav_fragments.mental_fitness.MindfulnessActivity"

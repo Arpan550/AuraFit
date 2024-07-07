@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Upper Header Section -->
+    <LinearLayout
+        android:id="@+id/upper_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <!-- Assessment Details TextView -->
+        <TextView
+            android:id="@+id/assessment_details_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:padding="12dp"
+            android:textStyle="bold"
+            android:textColor="@color/deepblue"
+            android:gravity="center_vertical"
+            android:paddingBottom="16dp" />
+
+        <!-- Submit Button -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/submit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+            android:padding="12dp"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+
+    <!-- RecyclerView for Questions -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/questions_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/upper_header"
+        android:layout_marginTop="16dp"
+        android:paddingBottom="16dp" />
+
+</RelativeLayout>
