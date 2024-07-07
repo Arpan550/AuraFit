@@ -25,9 +25,11 @@
             android:textSize="14sp" />
     </LinearLayout>
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/playImageView"
+        android:backgroundTint="@android:color/transparent"
         android:layout_width="wrap_content"
+        android:background="@drawable/button_background"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_play_arrow"
         android:contentDescription="Play" />
