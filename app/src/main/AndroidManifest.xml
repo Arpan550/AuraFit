@@ -58,7 +58,7 @@
             android:exported="false"
             android:theme="@style/Theme.AuraFit" />
         <activity
-            android:name=".MusicActivity"
+            android:name=".bottom_nav_fragments.physical_fitness.music.MusicActivity"
             android:exported="false" />
         <activity
             android:name=".drawer.AboutActivity"

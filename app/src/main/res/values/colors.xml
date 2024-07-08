@@ -16,5 +16,10 @@
     <color name="yellow_overweight">#FFFF00</color>
     <color name="red_obese">#FF0000</color>
 
+    <color name="light_gray">#F5F5F5</color>
+    <color name="primaryColor">#3F51B5</color>
+    <color name="darkGray">#616161</color>
+    <color name="playingItemBackgroundColor">#FFA500</color>
+
 
 </resources>
