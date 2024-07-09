@@ -27,9 +27,6 @@
             android:name=".bottom_nav_fragments.mental_fitness.SelfAssessmentActivity"
             android:exported="false" />
         <activity
-            android:name=".bottom_nav_fragments.mental_fitness.MeditationPlayerActivity"
-            android:exported="false" />
-        <activity
             android:name=".bottom_nav_fragments.mental_fitness.MeditationActivity"
             android:exported="false" />
         <activity
@@ -40,9 +37,6 @@
             android:exported="false" />
         <activity
             android:name=".bottom_nav_fragments.physical_fitness.diet_plan.FoodDietInfoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".bottom_nav_fragments.physical_fitness.diet_plan.UserRecordsActivity"
             android:exported="false" />
         <activity
             android:name=".bottom_nav_fragments.physical_fitness.diet_plan.BMIDietActivity"

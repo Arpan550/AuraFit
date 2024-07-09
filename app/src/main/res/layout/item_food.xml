@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:padding="16dp"
+    android:elevation="4dp"
+    app:cardCornerRadius="8dp">
+
+    <LinearLayout
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Food Image -->
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/food_image" />
+
+        <!-- Name -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/nameHeaderTextView"
+                style="@style/HeaderTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name" />
+
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:id="@+id/nameTextView"
+                style="@style/DetailTextView"
+                android:text="Sample Food Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:layout_marginStart="16dp" />
+        </LinearLayout>
+
+
+        <!-- Description -->
+        <TextView
+            android:id="@+id/descriptionHeaderTextView"
+            style="@style/HeaderTextView"
+            android:text="Description"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/descriptionTextView"
+            style="@style/DetailTextView"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla commodo justo id enim tincidunt."
+            android:lineSpacingExtra="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp" />
+
+        <!-- Nutrition Information -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <!-- Calories -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/caloriesHeaderTextView"
+                    style="@style/HeaderTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Calories" />
+
+                <TextView
+                    android:id="@+id/caloriesTextView"
+                    style="@style/DetailTextView"
+                    android:text="250 kcal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp" />
+            </LinearLayout>
+
+            <!-- Protein -->
+            <LinearLayout
+                android:layout_marginStart="6dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/proteinHeaderTextView"
+                    style="@style/HeaderTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Protein" />
+
+                <TextView
+                    android:id="@+id/proteinTextView"
+                    style="@style/DetailTextView"
+                    android:text="10 g"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp" />
+            </LinearLayout>
+
+            <!-- Carbohydrates -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/carbohydratesHeaderTextView"
+                    style="@style/HeaderTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Carbs" />
+
+                <TextView
+                    android:id="@+id/carbohydratesTextView"
+                    style="@style/DetailTextView"
+                    android:text="30 g"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp" />
+            </LinearLayout>
+
+            <!-- Fats -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/fatsHeaderTextView"
+                    style="@style/HeaderTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fats" />
+
+                <TextView
+                    android:id="@+id/fatsTextView"
+                    style="@style/DetailTextView"
+                    android:text="15 g"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Vitamins -->
+        <TextView
+            android:id="@+id/vitaminsHeaderTextView"
+            style="@style/HeaderTextView"
+            android:text="Vitamins"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/vitaminsTextView"
+            style="@style/DetailTextView"
+            android:text="Vitamin A, Vitamin C"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp" />
+
+        <!-- Minerals -->
+        <TextView
+            android:id="@+id/mineralsHeaderTextView"
+            style="@style/HeaderTextView"
+            android:text="Minerals"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/mineralsTextView"
+            style="@style/DetailTextView"
+            android:text="Iron, Calcium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp" />
+
+        <!-- Health Benefits -->
+        <TextView
+            android:id="@+id/healthBenefitsHeaderTextView"
+            style="@style/HeaderTextView"
+            android:text="Health Benefits"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/healthBenefitsTextView"
+            style="@style/DetailTextView"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla commodo justo id enim tincidunt."
+            android:lineSpacingExtra="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

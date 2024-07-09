@@ -38,10 +38,6 @@ class MentalHealthFragment : Fragment() {
 
         }
 
-        binding.resourcesCont.setOnClickListener {
-
-        }
-
         binding.therapyCont.setOnClickListener {
             val intent=Intent(requireContext(), SelfAssessmentActivity::class.java)
             startActivity(intent)
@@ -50,10 +46,6 @@ class MentalHealthFragment : Fragment() {
         binding.mindfulnessCont.setOnClickListener {
            val intent= Intent(requireContext(), MindfulnessActivity::class.java)
             startActivity(intent)
-        }
-
-        binding.gratitudeCont.setOnClickListener {
-
         }
     }
 

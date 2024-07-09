@@ -1,0 +1,136 @@
+{
+  "foodItems": [
+    {
+      "imageUrl": "https://5.imimg.com/data5/AK/RA/MY-68428614/apple.jpg",
+      "name": "Apple",
+      "description": "A healthy fruit rich in fiber and vitamins.",
+      "calories": "52 kcal",
+      "protein": "0.3 g",
+      "carbohydrates": "14 g",
+      "fats": "0.2 g",
+      "vitamins": "Vitamin C, Vitamin K",
+      "minerals": "Potassium, Magnesium",
+      "healthBenefits": "Good for digestion, helps with weight loss, lowers risk of heart disease."
+    },
+    {
+      "imageUrl": "https://media.cnn.com/api/v1/images/stellar/prod/120604032828-fresh-ripe-bananas.jpg?q=w_3590,h_2774,x_0,y_0,c_fill",
+      "name": "Banana",
+      "description": "A popular fruit known for its high potassium content.",
+      "calories": "89 kcal",
+      "protein": "1.1 g",
+      "carbohydrates": "23 g",
+      "fats": "0.3 g",
+      "vitamins": "Vitamin C, Vitamin B6",
+      "minerals": "Potassium, Magnesium",
+      "healthBenefits": "Provides energy, supports heart health, aids digestion."
+    },
+    {
+      "imageUrl": "https://cdn.pixabay.com/photo/2016/03/05/19/02/broccoli-1238250_640.jpg",
+      "name": "Broccoli",
+      "description": "A cruciferous vegetable packed with vitamins, minerals, and antioxidants.",
+      "calories": "55 kcal",
+      "protein": "3.7 g",
+      "carbohydrates": "11 g",
+      "fats": "0.6 g",
+      "vitamins": "Vitamin C, Vitamin K, Vitamin A",
+      "minerals": "Calcium, Iron",
+      "healthBenefits": "Supports immune health, promotes bone health, may reduce cancer risk."
+    },
+    {
+      "imageUrl": "https://seed2plant.in/cdn/shop/products/carrotseeds.jpg?v=1604032858",
+      "name": "Carrot",
+      "description": "A root vegetable known for its high beta-carotene content.",
+      "calories": "41 kcal",
+      "protein": "0.9 g",
+      "carbohydrates": "10 g",
+      "fats": "0.2 g",
+      "vitamins": "Vitamin A, Vitamin K, Vitamin C",
+      "minerals": "Potassium, Calcium",
+      "healthBenefits": "Improves vision, supports skin health, reduces cancer risk."
+    },
+    {
+      "imageUrl": "https://growstar.in/wp-content/uploads/2021/06/146653_Shamarie84_0980102c-8cb0-43de-b35a-b49e32ad5114-min.jpeg",
+      "name": "Chicken Breast",
+      "description": "A lean source of protein that is low in fat.",
+      "calories": "165 kcal",
+      "protein": "31 g",
+      "carbohydrates": "0 g",
+      "fats": "3.6 g",
+      "vitamins": "Vitamin B6, Vitamin B12",
+      "minerals": "Phosphorus, Selenium",
+      "healthBenefits": "Supports muscle growth, aids in weight loss, boosts immune function."
+    },
+    {
+      "imageUrl": "https://www.fisheries.noaa.gov/s3//styles/original/s3/2022-09/640x427-Salmon-Sockeye-NOAAFisheries.png?itok=WxO3WErA",
+      "name": "Salmon",
+      "description": "A fatty fish rich in omega-3 fatty acids and high-quality protein.",
+      "calories": "208 kcal",
+      "protein": "20 g",
+      "carbohydrates": "0 g",
+      "fats": "13 g",
+      "vitamins": "Vitamin D, Vitamin B12",
+      "minerals": "Selenium, Potassium",
+      "healthBenefits": "Supports heart health, improves brain function, reduces inflammation."
+    },
+    {
+      "imageUrl": "https://www.orgpick.com/cdn/shop/products/spnach_large_01cac1a1-246f-433c-b02b-e2c7986fe95c.jpg?v=1569550040",
+      "name": "Spinach",
+      "description": "A leafy green vegetable loaded with vitamins and minerals.",
+      "calories": "23 kcal",
+      "protein": "2.9 g",
+      "carbohydrates": "3.6 g",
+      "fats": "0.4 g",
+      "vitamins": "Vitamin A, Vitamin C, Vitamin K",
+      "minerals": "Iron, Calcium",
+      "healthBenefits": "Boosts immune health, improves eye health, supports bone health."
+    },
+    {
+      "imageUrl": "https://thumbs.dreamstime.com/b/three-strawberries-strawberry-leaf-white-background-114284301.jpg",
+      "name": "Strawberry",
+      "description": "A sweet and juicy berry packed with vitamins, fiber, and antioxidants.",
+      "calories": "32 kcal",
+      "protein": "0.7 g",
+      "carbohydrates": "7.7 g",
+      "fats": "0.3 g",
+      "vitamins": "Vitamin C, Vitamin B9",
+      "minerals": "Manganese, Potassium",
+      "healthBenefits": "Promotes heart health, regulates blood sugar levels, improves skin health."
+    },
+    {
+      "imageUrl": "https://images.immediate.co.uk/production/volatile/sites/30/2020/02/Sweet-potatoes-ca0d8f4.jpg?quality=90&resize=556,505",
+      "name": "Sweet Potato",
+      "description": "A nutritious root vegetable high in fiber and vitamins.",
+      "calories": "86 kcal",
+      "protein": "1.6 g",
+      "carbohydrates": "20 g",
+      "fats": "0.1 g",
+      "vitamins": "Vitamin A, Vitamin C, Vitamin B6",
+      "minerals": "Potassium, Manganese",
+      "healthBenefits": "Supports eye health, boosts immune function, promotes gut health."
+    },
+    {
+      "imageUrl": "https://t4.ftcdn.net/jpg/05/72/95/29/360_F_572952963_YNVwHoPX0FWaENu6jShGiYpIICS3W1cc.jpg",
+      "name": "Tomato",
+      "description": "A versatile fruit commonly used as a vegetable, rich in vitamins and antioxidants.",
+      "calories": "18 kcal",
+      "protein": "0.9 g",
+      "carbohydrates": "3.9 g",
+      "fats": "0.2 g",
+      "vitamins": "Vitamin C, Vitamin K",
+      "minerals": "Potassium, Folate",
+      "healthBenefits": "Supports heart health, improves skin health, reduces cancer risk."
+    },
+    {
+      "imageUrl": "https://bhavnagaris.com/cdn/shop/products/almond-1000x1000_a811a535-53bb-4715-ac02-27074e07646e.jpg?v=1621927244",
+      "name": "Almonds",
+      "description": "A nutrient-dense nut high in healthy fats, fiber, and protein.",
+      "calories": "579 kcal",
+      "protein": "21 g",
+      "carbohydrates": "22 g",
+      "fats": "50 g",
+      "vitamins": "Vitamin E, Vitamin B2",
+      "minerals": "Magnesium, Phosphorus",
+      "healthBenefits": "Supports heart health, aids in weight management, promotes gut health."
+    }
+  ]
+}

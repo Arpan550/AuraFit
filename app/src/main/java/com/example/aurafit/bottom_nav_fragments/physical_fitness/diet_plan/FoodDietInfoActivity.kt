@@ -2,52 +2,73 @@ package com.example.aurafit.bottom_nav_fragments.physical_fitness.diet_plan
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.aurafit.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.aurafit.adapters.FoodAdapter
 import com.example.aurafit.databinding.ActivityFoodDietInfoBinding
-import com.example.aurafit.model.Food
-import com.example.aurafit.model.NutritionalInfo
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import java.io.IOException
+import java.io.InputStream
+
+data class FoodItem(
+    val imageUrl: String,
+    val name: String,
+    val description: String,
+    val calories: String,
+    val protein: String,
+    val carbohydrates: String,
+    val fats: String,
+    val vitamins: String,
+    val minerals: String,
+    val healthBenefits: String
+)
+
+data class FoodItemsWrapper(
+    val foodItems: List<FoodItem>
+)
 
 class FoodDietInfoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFoodDietInfoBinding
+    private lateinit var foodAdapter: FoodAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFoodDietInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Example food (replace with actual data retrieval logic)
-        val food = Food(
-            name = "Salmon",
-            description = "Salmon is a popular oily fish with many nutritional benefits.",
-            nutritionalInfo = NutritionalInfo(
-                calories = 206,
-                protein = 22.0,
-                carbohydrates = 0.0,
-                fats = 13.4,
-                vitamins = listOf("Vitamin A", "Vitamin D", "Vitamin B12"),
-                minerals = listOf("Selenium", "Potassium")
-            ),
-            healthBenefits = listOf(
-                "Rich source of omega-3 fatty acids",
-                "Promotes heart health",
-                "Supports brain function"
-            ),
-            imageResourceId = R.drawable.img // Replace with actual image resource ID
-        )
+        // Load JSON data and parse
+        val json = loadJSONFromAsset("food_data.json")
+        if (json != null) {
+            val foodItems = parseFoodJson(json)
+            setupRecyclerView(foodItems)
+        }
+    }
 
-        // Populate UI with food information
-        binding.foodName.text = food.name
-        binding.foodDescription.text = food.description
-        binding.caloriesValue.text = food.nutritionalInfo.calories.toString()
-        binding.proteinValue.text = "${food.nutritionalInfo.protein} g"
-        binding.carbsValue.text = "${food.nutritionalInfo.carbohydrates} g"
-        binding.fatsValue.text = "${food.nutritionalInfo.fats} g"
-        binding.vitaminsValue.text = food.nutritionalInfo.vitamins.joinToString(", ")
-        binding.mineralsValue.text = food.nutritionalInfo.minerals.joinToString(", ")
-        binding.healthBenefits.text = food.healthBenefits.joinToString("\n")
+    private fun parseFoodJson(json: String): List<FoodItem> {
+        val gson = Gson()
+        val type = object : TypeToken<FoodItemsWrapper>() {}.type
+        val foodItemsWrapper: FoodItemsWrapper = gson.fromJson(json, type)
+        return foodItemsWrapper.foodItems
+    }
 
-        // Load food image
-        binding.foodImage.setImageResource(food.imageResourceId)
+    private fun setupRecyclerView(foodItems: List<FoodItem>) {
+        foodAdapter = FoodAdapter(foodItems)
+        binding.recyclerView.adapter = foodAdapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+    }
+
+    private fun loadJSONFromAsset(fileName: String): String? {
+        return try {
+            val inputStream: InputStream = assets.open(fileName)
+            val size: Int = inputStream.available()
+            val buffer = ByteArray(size)
+            inputStream.read(buffer)
+            inputStream.close()
+            String(buffer, Charsets.UTF_8)
+        } catch (ex: IOException) {
+            ex.printStackTrace()
+            null
+        }
     }
 }

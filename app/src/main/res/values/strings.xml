@@ -65,6 +65,7 @@
     <string name="bmi_diet_description">Provide diet plans tailored to users\' BMI categories (underweight, normal weight, overweight, etc.).</string>
     <string name="bmi_diet_title">BMI Diet</string>
     <string name="mindfulness">Mindfulness</string>
+    <string name="food_image">food_image\n</string>
 
 
 </resources>

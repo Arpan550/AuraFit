@@ -37,6 +37,7 @@
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:paddingStart="16dp"
+                android:paddingTop="4dp"
                 android:gravity="center_vertical">
 
                 <TextView
@@ -75,7 +76,7 @@
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:src="@drawable/ic_play_arrow"
                     android:layout_marginBottom="8dp"
-                    app:tint="@color/deepblue" />
+                    app:tint="@color/primaryColor" />
 
                 <ImageButton
                     android:id="@+id/btn_pause"
@@ -83,7 +84,7 @@
                     android:layout_height="48dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:src="@drawable/ic_pause"
-                    app:tint="@color/deepblue" />
+                    app:tint="@color/primaryColor" />
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

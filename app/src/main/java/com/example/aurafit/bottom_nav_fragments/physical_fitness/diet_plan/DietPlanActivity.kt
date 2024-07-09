@@ -11,31 +11,21 @@ class DietPlanActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding=ActivityDietPlanBinding.inflate(layoutInflater)
+        binding = ActivityDietPlanBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.bmiDiet.setOnClickListener {
-            val intent= Intent(this, BMIDietActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.userRecords.setOnClickListener {
-            val intent= Intent(this, UserRecordsActivity::class.java)
+            val intent = Intent(this, BMIDietActivity::class.java)
             startActivity(intent)
         }
 
         binding.foodDietInfo.setOnClickListener {
-            val intent= Intent(this, FoodDietInfoActivity::class.java)
+            val intent = Intent(this, FoodDietInfoActivity::class.java)
             startActivity(intent)
         }
 
         binding.dietRecommendation.setOnClickListener {
-            val intent= Intent(this, BMIDietActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.postDietProfile.setOnClickListener {
-            val intent= Intent(this, BMIDietActivity::class.java)
+            val intent = Intent(this, BMIDietActivity::class.java)
             startActivity(intent)
         }
     }
