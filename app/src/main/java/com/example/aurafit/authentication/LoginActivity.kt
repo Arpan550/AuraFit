@@ -152,24 +152,6 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        // Initialize Facebook SDK
-        callbackManager = CallbackManager.Factory.create()
-        loginBinding.btnSigninFacebook.setReadPermissions("email", "public_profile")
-        loginBinding.btnSigninFacebook.registerCallback(callbackManager,
-            object : FacebookCallback<LoginResult> {
-                override fun onSuccess(loginResult: LoginResult) {
-                    Log.d(TAG, "facebook:onSuccess:$loginResult")
-                    handleFacebookAccessToken(loginResult.accessToken)
-                }
-
-                override fun onCancel() {
-                    Log.d(TAG, "facebook:onCancel")
-                }
-
-                override fun onError(error: FacebookException) {
-                    Log.d(TAG, "facebook:onError", error)
-                }
-            })
 
         // Initialize Google Authentication
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -200,59 +182,6 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    // Facebook
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        callbackManager.onActivityResult(requestCode, resultCode, data)
-    }
-
-    private fun handleFacebookAccessToken(token: AccessToken) {
-        val credential = FacebookAuthProvider.getCredential(token.token)
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    val user = auth.currentUser
-                    if (user != null) {
-                        saveUserDataToFirestore(user)
-                    }
-                    // Proceed to main activity or do something else
-                    startActivity(Intent(this, MainActivity::class.java))
-                    finish()
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(TAG, "signInWithCredential:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
-                }
-            }
-    }
-
-
-    private fun saveUserDataToFirestore(user: FirebaseUser?) {
-        user?.let { firebaseUser ->
-            val userDetails = hashMapOf<String, Any?>()
-            val request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken()) { jsonObject, _ ->
-                userDetails["name"] = jsonObject?.getString("name")
-                userDetails["email"] = jsonObject?.getString("email")
-                userDetails["photoUrl"] = "https://graph.facebook.com/${firebaseUser.uid}/picture?type=large"
-
-                // Store user details to Firestore
-                FirebaseFirestore.getInstance().collection("users").document(firebaseUser.uid)
-                    .set(userDetails)
-                    .addOnSuccessListener {
-                        Log.d(TAG, "User details saved successfully")
-                    }
-                    .addOnFailureListener { e ->
-                        Log.e(TAG, "Error saving user details", e)
-                    }
-            }
-            val parameters = Bundle()
-            parameters.putString("fields", "id,name,email")
-            request.parameters = parameters
-            request.executeAsync()
-        }
-    }
 
     private fun googleSignIn() {
         val signInClient = googleSignInClient.signInIntent

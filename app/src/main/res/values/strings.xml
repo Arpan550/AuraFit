@@ -8,7 +8,7 @@
     <string name="already_have_account">Already have an account?</string>
     <string name="sign_up_here">Sign Up Here</string>
     <string name="empower_your_aura_shape_your_fitness_with_aurafit">Empower Your Aura, Shape Your Fitness with AuraFit</string>
-    <string name="continue_">Continue</string>
+    <string name="continue_google">Continue with google</string>
     <string name="log_in">Log In</string>
     <string name="log_in_to_continue">Log In to Continue</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
@@ -34,9 +34,9 @@
     <string name="reset_password">Reset Password</string>
     <string name="sign_out">Sign Out</string>
     <string name="about">About</string>
-    <string name="help_amp_support"><![CDATA[Help & Support]]></string>
+    <string name="chatbot_support">Chat support</string>
     <string name="settings">Settings</string>
-    <string name="friends_amp_community"><![CDATA[Friends & Community]]></string>
+    <string name="community">Community</string>
     <string name="physical_fitness">Physical Fitness</string>
     <string name="mental_fitness">Mental Fitness</string>
     <string name="analytics">Analytics</string>
@@ -51,7 +51,7 @@
     <string name="wellness">Wellness</string>
     <string name="meditation">Meditation</string>
     <string name="emotional_wellbeing">Wellbeing</string>
-    <string name="therapy">Mindcare</string>
+    <string name="mindcare">Mindcare</string>
     <string name="counselling">Counselling</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -66,6 +66,8 @@
     <string name="bmi_diet_title">BMI Diet</string>
     <string name="mindfulness">Mindfulness</string>
     <string name="food_image">food_image\n</string>
+    <string name="next">next\n</string>
+    <string name="continuee">Continue\n</string>
 
 
 </resources>

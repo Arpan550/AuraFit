@@ -162,21 +162,11 @@
                             android:backgroundTint="@color/white"
                             android:gravity="center"
                             android:padding="10dp"
-                            android:text="@string/continue_"
+                            android:text="@string/continue_google"
                             android:textColor="@color/black"
                             android:textStyle="bold"
                             android:drawableStart="@drawable/button_background_google"
                             android:drawablePadding="15dp"/>
-
-                        <!-- Log In with Facebook Button -->
-                        <com.facebook.login.widget.LoginButton
-                            android:id="@+id/btn_signin_facebook"
-                            android:layout_width="15dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="30dp"
-                            android:layout_marginBottom="30dp" />
                     </LinearLayout>
 
                     <LinearLayout
