@@ -1,4 +1,5 @@
 /build
 google-services.json
 
-app/src/main/assets/*
+app/src/main/assets/config.json
+app/src/main/assets/food_data.json
