@@ -10,10 +10,16 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.aurafit.R
 import com.example.aurafit.databinding.ActivityBmidietBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import java.util.*
 
 class BMIDietActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBmidietBinding
+    private lateinit var auth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
+    private lateinit var currentUserUid: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +30,10 @@ class BMIDietActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        auth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
+        currentUserUid = auth.currentUser!!.uid
 
         // Set up header and description
         binding.headerTitle.text = getString(R.string.bmi_diet_title)
@@ -103,6 +113,25 @@ class BMIDietActivity : AppCompatActivity() {
 
         binding.bmiResult.text = String.format("Your BMI: %.2f (%s)", bmi, bmiCategory)
         binding.bmiResult.setTextColor(color)
+
+        // Store BMI details in Firestore
+        val timestamp = Calendar.getInstance().time.toString() // Use timestamp as per your requirement
+        val bmiDetails = mapOf(
+            "weight" to weight,
+            "height" to height,
+            "bmi" to bmi,
+            "category" to bmiCategory
+            // Add more details as needed
+        )
+
+        val userBmiRef = firestore.collection("bmi_info").document(currentUserUid).collection(timestamp).document("details")
+        userBmiRef.set(bmiDetails)
+            .addOnSuccessListener {
+                Toast.makeText(this, "BMI details saved successfully", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Error saving BMI details: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 }
 

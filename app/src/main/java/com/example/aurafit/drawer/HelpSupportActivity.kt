@@ -1,81 +1,121 @@
 package com.example.aurafit.drawer
 
+import android.annotation.SuppressLint
 import android.app.ProgressDialog
-import android.graphics.Bitmap
+import android.content.Context
 import android.os.Bundle
-import android.webkit.WebChromeClient
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import androidx.activity.enableEdgeToEdge
+import android.os.Handler
+import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.aurafit.model.MessageModel
+import com.example.aurafit.adapters.ChatAdapter
+import kotlinx.coroutines.runBlocking
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import android.widget.EditText
+import android.widget.ImageButton
 import com.example.aurafit.R
+import com.google.ai.client.generativeai.GenerativeModel
+import org.json.JSONObject
+import java.io.IOException
+import java.util.*
+import com.example.aurafit.databinding.ActivityHelpSupportBinding
 
 class HelpSupportActivity : AppCompatActivity() {
-    private lateinit var webView: WebView
-    private lateinit var progressDialog: ProgressDialog
 
+    private lateinit var binding: ActivityHelpSupportBinding
+    private lateinit var adapter: ChatAdapter
+    private lateinit var messageList: MutableList<MessageModel>
+    private lateinit var progressDialog: ProgressDialog // Use ProgressDialog
+
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_help_support)
+        binding = ActivityHelpSupportBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val recyclerView = binding.recyclerViewChat
+        val editTextMessage = binding.editTextMessage
+        val buttonSendMessage = binding.buttonSendMessage
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        messageList = mutableListOf()
+        adapter = ChatAdapter(messageList)
+        recyclerView.adapter = adapter
+
+        messageList.add(MessageModel("Welcome here! How can I help you?", false, Date()))
+        adapter.notifyDataSetChanged()
+
 
         progressDialog = ProgressDialog(this)
-        progressDialog.setMessage("Loading...")
-        progressDialog.setCancelable(false)
+        progressDialog.setMessage("Typing...")
 
-        webView = findViewById(R.id.webView)
-        configureWebViewSettings()
-        setupWebView()
-        loadChatbot()
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        buttonSendMessage.setOnClickListener {
+            sendMessage()
         }
     }
 
-    private fun configureWebViewSettings() {
-        val webSettings: WebSettings = webView.settings
-        webSettings.javaScriptEnabled = true
-        webSettings.domStorageEnabled = true
-        webSettings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+    private fun sendMessage() {
+        val messageText = binding.editTextMessage.text.toString().trim()
+        if (messageText.isNotEmpty()) {
+            val userMessage = MessageModel(messageText, true, Date())
+            messageList.add(userMessage)
+            adapter.notifyItemInserted(messageList.size - 1)
+            binding.recyclerViewChat.smoothScrollToPosition(messageList.size - 1)
+            binding.editTextMessage.setText("")
+
+            progressDialog.show()
+
+            Handler().postDelayed({
+                receiveBotMessage(messageText)
+            }, 1000)
+        }
     }
 
-    private fun setupWebView() {
-        webView.webViewClient = object : WebViewClient() {
-            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-                super.onPageStarted(view, url, favicon)
-                progressDialog.show()
-            }
+    private fun receiveBotMessage(userMessage: String) {
+        val apiKey = readApiKey(this)
 
-            override fun onPageFinished(view: WebView?, url: String?) {
-                super.onPageFinished(view, url)
+        if (apiKey != null) {
+            val generativeModel = GenerativeModel(
+                modelName = "gemini-1.5-flash",
+                apiKey = apiKey
+            )
+
+            runBlocking {
+                val response = generativeModel.generateContent(userMessage)
+
                 progressDialog.dismiss()
+
+                val botMessage = MessageModel(response.text.toString(), false, Date())
+                messageList.add(botMessage)
+                adapter.notifyItemInserted(messageList.size - 1)
+                binding.recyclerViewChat.smoothScrollToPosition(messageList.size - 1)
             }
-        }
-
-        webView.webChromeClient = WebChromeClient()
-    }
-
-    private fun loadChatbot() {
-        val botUrl = "https://mediafiles.botpress.cloud/901ad05a-253d-4022-a6ae-10d5b6a16f99/webchat/bot.html"
-        webView.loadUrl(botUrl)
-    }
-
-    override fun onBackPressed() {
-        if (webView.canGoBack()) {
-            webView.goBack()
         } else {
-            super.onBackPressed()
+            Log.e("HelpSupportActivity", "API key not found")
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        progressDialog.dismiss()
+    private fun readApiKey(context: Context): String? {
+        var apiKey: String? = null
+        try {
+            val inputStream = context.assets.open("config.json")
+            val size = inputStream.available()
+            val buffer = ByteArray(size)
+            inputStream.read(buffer)
+            inputStream.close()
+
+            val json = String(buffer, Charsets.UTF_8)
+            val jsonObject = JSONObject(json)
+
+            apiKey = jsonObject.getString("apiKey")
+        } catch (e: IOException) {
+            e.printStackTrace()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return apiKey
     }
 }

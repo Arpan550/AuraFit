@@ -71,4 +71,6 @@ dependencies {
     implementation("com.github.raag:TimerView:v0.5.8beta")
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+
+    implementation("com.google.ai.client.generativeai:generativeai:0.7.0")
 }

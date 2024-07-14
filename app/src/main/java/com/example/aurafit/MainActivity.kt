@@ -47,33 +47,33 @@ class MainActivity : AppCompatActivity() {
         mainBinding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        // Get current user
+
         val currentUser = Firebase.auth.currentUser
 
-        // Load user data from Firestore
+
         currentUser?.uid?.let { userId ->
             db.collection("users").document(userId).get().addOnSuccessListener { document ->
                     val name = document.getString("name")
                     val email = document.getString("email")
                     val photoUrl = document.getString("photoUrl")
 
-                    // Set data to header layout
+
                     val headerView = mainBinding.navigationView.getHeaderView(0)
                     val profileImage = headerView.findViewById<ImageView>(R.id.profile_image)
                     val usernameTV = headerView.findViewById<TextView>(R.id.usernameTV)
                     val emailTV = headerView.findViewById<TextView>(R.id.emailTV)
 
-                    // Update views
+
                     usernameTV.text = name
                     emailTV.text = email
 
-                    // Load profile image using Glide
-                    Glide.with(this).load(photoUrl) // Load profile image URL from Firestore
-                        .placeholder(R.drawable.img) // Placeholder image while loading
-                        .error(R.drawable.img) // Error image if loading fails
+
+                    Glide.with(this).load(photoUrl)
+                        .placeholder(R.drawable.img)
+                        .error(R.drawable.img)
                         .into(profileImage)
                 }.addOnFailureListener { e ->
-                    // Handle failure
+
                 }
         }
 
@@ -115,8 +115,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        //Bottom navigation handling
-        // Load AnalyticsFragment by default
+
         if (savedInstanceState == null) {
             loadFragment(AnalyticsFragment())
             mainBinding.appBarMain.contentMain.bottomNavigation.selectedItemId=R.id.nav_analytics
@@ -155,17 +154,14 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun clearUserDataAndStartLoginActivity() {
-        // Clear all data related to user session
-        // For example: SharedPreferences, local database, etc.
 
-        // Sign out from Firebase Authentication
         FirebaseAuth.getInstance().signOut()
 
-        // Sign out from Google Sign-In
+
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
         val googleSignInClient = GoogleSignIn.getClient(this, gso)
         googleSignInClient.signOut().addOnCompleteListener {
-            // Start LoginActivity
+
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
