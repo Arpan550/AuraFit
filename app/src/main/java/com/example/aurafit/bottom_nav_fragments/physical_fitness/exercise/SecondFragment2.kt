@@ -1,7 +1,10 @@
 package com.example.aurafit.bottom_nav_fragments.physical_fitness.exercise
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +20,8 @@ class SecondFragment2 : Fragment(), Exercise60RVAdapter.ExerciseClickListener {
     private var _binding: FragmentSecond2Binding? = null
     private val binding get() = _binding!!
 
+    private var durationDays: Int = 0 // Variable to hold duration days
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,9 +33,37 @@ class SecondFragment2 : Fragment(), Exercise60RVAdapter.ExerciseClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Retrieve duration days passed from FirstFragment
+        durationDays = arguments?.getInt("programDuration", 0) ?: 0
+
         // Initialize RecyclerView and set adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = Exercise60RVAdapter(getExerciseGroups(), this)
+
+        showDurationDialog()
+    }
+
+    private fun showDurationDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Program Duration")
+        builder.setMessage("You are enrolled in a $durationDays day program.")
+
+        builder.setPositiveButton("OK") { dialog, _ ->
+            dialog.dismiss()
+            showCurrentDayAlertDialog(arguments?.getInt("currentDay", 1) ?: 1)
+        }
+
+        builder.show()
+    }
+    private fun showCurrentDayAlertDialog(currentDay: Int) {
+        val alertDialog = AlertDialog.Builder(requireContext())
+            .setTitle("Current Day of Program")
+            .setMessage("You are on Day $currentDay of the program.")
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+        alertDialog.show()
     }
 
     override fun onExerciseClicked(exercise: Exercise) {

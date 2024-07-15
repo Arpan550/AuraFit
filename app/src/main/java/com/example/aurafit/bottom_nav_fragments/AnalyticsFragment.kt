@@ -1,6 +1,7 @@
 package com.example.aurafit.bottom_nav_fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,13 +11,14 @@ import com.example.aurafit.databinding.FragmentAnalyticsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.bumptech.glide.Glide
+import com.google.firebase.firestore.Query
 
 class AnalyticsFragment : Fragment() {
 
     private lateinit var binding: FragmentAnalyticsBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
-    private var userId: String = "" // Initialize with the user's actual ID
+    private var userId: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +41,7 @@ class AnalyticsFragment : Fragment() {
         fetchUserDetails()
 
         // Fetch BMI details from Firestore
-        fetchBMIDetails()
+        fetchLatestBMIDetails()
     }
 
     private fun fetchUserDetails() {
@@ -63,22 +65,21 @@ class AnalyticsFragment : Fragment() {
                         .error(R.drawable.img) // Error image if loading fails
                         .into(binding.userPhotoImageView)
                 } else {
-                    // Document doesn't exist
-                    // Handle this case based on your app's requirements
+                    Log.d("AnalyticsFragment", "No such document")
                 }
             }
             .addOnFailureListener { exception ->
-                // Handle any errors
-                // For example, log the error or show an error message to the user
+                Log.d("AnalyticsFragment", "get failed with ", exception)
             }
     }
 
-    private fun fetchBMIDetails() {
-        val bmiRef = firestore.collection("bmi_info").document(userId).collection("latest").document("details")
+    private fun fetchLatestBMIDetails() {
+        val bmiRef = firestore.collection("bmi_info").document(userId).collection("bmi_records")
 
-        bmiRef.get()
-            .addOnSuccessListener { document ->
-                if (document != null && document.exists()) {
+        bmiRef.orderBy("timestamp", Query.Direction.DESCENDING).limit(1).get()
+            .addOnSuccessListener { querySnapshot ->
+                if (!querySnapshot.isEmpty) {
+                    val document = querySnapshot.documents.first()
                     val weight = document.getDouble("weight") ?: 0.0
                     val height = document.getDouble("height") ?: 0.0
                     val bmi = document.getDouble("bmi") ?: 0.0
@@ -90,13 +91,11 @@ class AnalyticsFragment : Fragment() {
                     binding.bmiValueTextView.text = String.format("%.2f", bmi)
                     binding.bmiCategoryTextView.text = category
                 } else {
-                    // Document doesn't exist
-                    // Handle this case based on your app's requirements
+                    Log.d("AnalyticsFragment", "No BMI records found")
                 }
             }
             .addOnFailureListener { exception ->
-                // Handle any errors
-                // For example, log the error or show an error message to the user
+                Log.d("AnalyticsFragment", "Error fetching BMI details: ", exception)
             }
     }
 }

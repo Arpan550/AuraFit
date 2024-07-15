@@ -23,7 +23,7 @@
     <LinearLayout
         android:id="@+id/exercise_layout"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="115dp"
         android:layout_gravity="center"
         android:orientation="vertical">
 
@@ -100,7 +100,7 @@
     <LinearLayout
         android:id="@+id/exercise2_layout"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="115dp"
         android:layout_gravity="center"
         android:orientation="vertical">
 
@@ -177,7 +177,7 @@
     <LinearLayout
         android:id="@+id/exercise3_layout"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="115dp"
         android:layout_gravity="center"
         android:orientation="vertical">
 

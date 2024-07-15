@@ -68,6 +68,7 @@
     <string name="food_image">food_image\n</string>
     <string name="next">next\n</string>
     <string name="continuee">Continue\n</string>
+    <string name="continue_program">Continue\n</string>
 
 
 </resources>

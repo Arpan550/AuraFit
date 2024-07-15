@@ -119,5 +119,4 @@
         android:textSize="18sp"
         android:layout_toEndOf="@id/bmiCategoryLabelTextView"
         android:layout_alignBaseline="@id/bmiCategoryLabelTextView"/>
-
 </RelativeLayout>

@@ -115,16 +115,16 @@ class BMIDietActivity : AppCompatActivity() {
         binding.bmiResult.setTextColor(color)
 
         // Store BMI details in Firestore
-        val timestamp = Calendar.getInstance().time.toString() // Use timestamp as per your requirement
+        val timestamp = Calendar.getInstance().time // Use timestamp as per your requirement
         val bmiDetails = mapOf(
             "weight" to weight,
             "height" to height,
             "bmi" to bmi,
-            "category" to bmiCategory
-            // Add more details as needed
+            "category" to bmiCategory,
+            "timestamp" to timestamp
         )
 
-        val userBmiRef = firestore.collection("bmi_info").document(currentUserUid).collection(timestamp).document("details")
+        val userBmiRef = firestore.collection("bmi_info").document(currentUserUid).collection("bmi_records").document()
         userBmiRef.set(bmiDetails)
             .addOnSuccessListener {
                 Toast.makeText(this, "BMI details saved successfully", Toast.LENGTH_SHORT).show()
@@ -133,6 +133,7 @@ class BMIDietActivity : AppCompatActivity() {
                 Toast.makeText(this, "Error saving BMI details: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
+
 }
 
 data class BMICategory(val title: String, val description: String, val colorRes: Int)
