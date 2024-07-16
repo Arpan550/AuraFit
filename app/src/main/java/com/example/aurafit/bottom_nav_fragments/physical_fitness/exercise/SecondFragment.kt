@@ -75,9 +75,12 @@ class SecondFragment : Fragment() {
             putExtra("exercise_name", exercise.name)
             putExtra("exercise_gif_url", exercise.gifUrl)
             putExtra("exercise_steps", ArrayList(exercise.steps))
+            putExtra("program_duration", durationDays) // Pass program duration
+            putExtra("current_day", arguments?.getInt("currentDay", 1) ?: 1)
         }
         startActivity(intent)
     }
+
     fun getExercises(): List<Exercises> {
         return listOf(
             // Chest Exercises

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".bottom_nav_fragments.physical_fitness.exercise.TimerFragment">
 
     <!-- TimerView -->
@@ -12,11 +13,10 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:textSize="30sp"
-        android:layout_marginTop="30dp"
-        android:layout_gravity="center_horizontal"
-        />
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal" />
 
-    <!-- Buttons -->
+    <!-- Buttons and Switch -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
             android:textColor="@color/white"
             android:layout_marginEnd="10dp"
             android:background="@drawable/button_background"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <!-- Reset Button -->
         <androidx.appcompat.widget.AppCompatButton
@@ -43,7 +43,8 @@
             android:text="@string/reset"
             android:background="@drawable/button_background"
             android:textColor="@color/white"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:layout_marginEnd="10dp" />
 
     </LinearLayout>
 

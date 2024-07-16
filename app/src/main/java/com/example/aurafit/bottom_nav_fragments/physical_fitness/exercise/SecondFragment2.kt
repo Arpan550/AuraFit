@@ -72,6 +72,8 @@ class SecondFragment2 : Fragment(), Exercise60RVAdapter.ExerciseClickListener {
             putExtra("exercise_name", exercise.name)
             putExtra("exercise_gif_url", exercise.gifUrl)
             putExtra("exercise_steps", ArrayList(exercise.steps))
+            putExtra("program_duration", durationDays)
+            putExtra("current_day", arguments?.getInt("currentDay", 1) ?: 1)
         }
         startActivity(intent)
     }

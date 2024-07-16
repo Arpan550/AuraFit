@@ -123,6 +123,8 @@ class MindfulnessActivity : AppCompatActivity() {
             val intent = Intent(this, ExerciseDetailsActivity::class.java).apply {
                 putExtra("exercise_name", exercise.title)
                 putExtra("exercise_steps", ArrayList(exercise.steps))
+                putExtra("program_duration", "Not Applicable")
+                putExtra("current_day", "Not Applicable")
             }
             startActivity(intent)
         }
