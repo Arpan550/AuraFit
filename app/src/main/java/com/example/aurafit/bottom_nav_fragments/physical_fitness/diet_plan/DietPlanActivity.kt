@@ -25,7 +25,7 @@ class DietPlanActivity : AppCompatActivity() {
         }
 
         binding.dietRecommendation.setOnClickListener {
-            val intent = Intent(this, BMIDietActivity::class.java)
+            val intent = Intent(this, DietRecommendationActivity::class.java)
             startActivity(intent)
         }
     }
