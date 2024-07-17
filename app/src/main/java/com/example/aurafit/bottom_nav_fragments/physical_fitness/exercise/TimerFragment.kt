@@ -2,6 +2,7 @@ package com.example.aurafit.bottom_nav_fragments.physical_fitness.exercise
 
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,18 +34,20 @@ class TimerFragment : Fragment() {
 
         // Start button click listener
         binding.startButton.setOnClickListener {
+            Log.d("TimerFragment", "Start button clicked")
             if (isTimerRunning) {
+                Log.d("TimerFragment", "Pausing timer")
                 pauseTimer()
             } else {
+                Log.d("TimerFragment", "Starting timer")
                 startTimer()
             }
         }
 
         // Reset button click listener
         binding.resetButton.setOnClickListener {
-            if (isTimerRunning) {
-                resetTimer()
-            }
+            Log.d("TimerFragment", "Reset button clicked")
+            resetTimer()
         }
     }
 
@@ -66,6 +69,7 @@ class TimerFragment : Fragment() {
 
         isTimerRunning = true
         binding.startButton.text = getString(R.string.pause)
+        Log.d("TimerFragment", "Timer started")
     }
 
     private fun pauseTimer() {
@@ -73,15 +77,19 @@ class TimerFragment : Fragment() {
             countDownTimer.cancel()
             isTimerRunning = false
             binding.startButton.text = getString(R.string.start)
+            Log.d("TimerFragment", "Timer paused")
         }
     }
 
     private fun resetTimer() {
-        countDownTimer.cancel()
+        if (::countDownTimer.isInitialized) {
+            countDownTimer.cancel()
+        }
         isTimerRunning = false
         timeLeftInMillis = timerStartTimeInMillis
         updateTimerUI(timeLeftInMillis)
         binding.startButton.text = getString(R.string.start)
+        Log.d("TimerFragment", "Timer reset")
     }
 
     private fun updateTimerUI(millisUntilFinished: Long) {
@@ -90,5 +98,6 @@ class TimerFragment : Fragment() {
         val remainingSeconds = seconds % 60
         val timeLeftFormatted = String.format("%02d:%02d", minutes, remainingSeconds)
         binding.timer.text = timeLeftFormatted
+        Log.d("TimerFragment", "Timer updated: $timeLeftFormatted")
     }
 }

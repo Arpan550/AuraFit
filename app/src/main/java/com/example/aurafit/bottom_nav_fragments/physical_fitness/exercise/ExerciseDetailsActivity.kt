@@ -1,6 +1,7 @@
 package com.example.aurafit.bottom_nav_fragments.physical_fitness.exercise
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.aurafit.R
 import com.example.aurafit.adapters.ViewPagerExerciseAdapter
+import com.example.aurafit.bottom_nav_fragments.AnalyticsFragment
 import com.example.aurafit.databinding.ActivityExerciseDetailsBinding
+import com.example.aurafit.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
@@ -23,14 +26,16 @@ class ExerciseDetailsActivity : AppCompatActivity() {
     private var exerciseTitle: String? = null
     private var exerciseGifUrl: String? = null
     private lateinit var auth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore // Add Firestore reference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityExerciseDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize Firestore
-        val firestore = FirebaseFirestore.getInstance()
+
+        // Initialize Firestore and FirebaseAuth
+        firestore = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
 
         // Retrieve data from intent extras
@@ -72,17 +77,16 @@ class ExerciseDetailsActivity : AppCompatActivity() {
                 // Prepare the exercise data to be updated
                 val exerciseData = hashMapOf(
                     "exercise_title" to exerciseTitle,
-                    "duration" to programDuration, // Example duration, replace with actual value
+                    "duration" to programDuration,
                     "is_done" to true
                 )
 
                 // Firestore references
-                val firestore = FirebaseFirestore.getInstance()
                 val userProgramsRef = firestore.collection("user_programs")
                 val programCollectionRef = userProgramsRef.document(userId)
                     .collection("$programDuration-day_program")
                     .document("exercise")
-                    .collection("Day $currentDay") // Assuming currentDay is the day number
+                    .collection("Day $currentDay")
                     .document("$exerciseTitle")
 
                 // Update the exercise details in Firestore
@@ -90,7 +94,10 @@ class ExerciseDetailsActivity : AppCompatActivity() {
                     .addOnSuccessListener {
                         progressDialog.dismiss()
                         Log.d("Firestore", "Exercise data for current day updated successfully.")
-                        // Optionally, you can show a success message or navigate somewhere
+
+                        // After uploading data, start AnalyticsFragment with relevant data
+                        passDataToAnalyticsFragment(programDuration, currentDay)
+
                     }
                     .addOnFailureListener { e ->
                         progressDialog.dismiss()
@@ -109,4 +116,14 @@ class ExerciseDetailsActivity : AppCompatActivity() {
         }
         return stringBuilder.toString()
     }
+
+    private fun passDataToAnalyticsFragment(programDuration: Int, currentDay: Int) {
+        // Save program duration and current day to SharedPreferences
+        val sharedPreferences = getSharedPreferences("AnalyticsData", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putInt("program_duration", programDuration)
+        editor.putInt("current_day", currentDay)
+        editor.apply()
+    }
+
 }

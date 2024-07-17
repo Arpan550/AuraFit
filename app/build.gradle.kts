@@ -73,4 +73,6 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
 
     implementation("com.google.ai.client.generativeai:generativeai:0.7.0")
+
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }
