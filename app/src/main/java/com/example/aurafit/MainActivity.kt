@@ -6,6 +6,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.aurafit.authentication.LoginActivity
@@ -46,6 +48,11 @@ class MainActivity : AppCompatActivity() {
 
         mainBinding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
+
+        // Set up click listener for about_app_icon in header_layout
+        mainBinding.navigationView.getHeaderView(0)?.findViewById<AppCompatImageButton>(R.id.about_app_icon)?.setOnClickListener {
+            startActivity(Intent(this, AboutActivity::class.java))
+        }
 
 
         val currentUser = Firebase.auth.currentUser
@@ -96,11 +103,6 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.nav_settings -> {
                     startActivity(Intent(this, SettingsActivity::class.java))
-                    true
-                }
-
-                R.id.nav_about -> {
-                    startActivity(Intent(this, AboutActivity::class.java))
                     true
                 }
 

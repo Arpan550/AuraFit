@@ -1,0 +1,86 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="18dp"
+    android:layout_marginTop="30dp">
+
+    <!-- Image Placeholder -->
+    <ImageView
+        android:id="@+id/image_post"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:src="@drawable/img"
+        android:scaleType="centerCrop"
+        android:background="@color/light_gray"
+        android:padding="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Caption Input -->
+    <EditText
+        android:id="@+id/editText_caption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Write here"
+        android:inputType="textMultiLine"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:padding="12dp"
+        android:background="@drawable/edittext_bg"
+        android:minLines="2"
+        android:maxLines="6"
+        android:minHeight="50dp" />
+
+    <TextView
+        android:padding="12dp"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Share your thoughts and experiences with others"
+        android:layout_marginTop="10dp"/>
+
+
+    <!-- Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/cancel"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:backgroundTint="@color/black"
+            android:textSize="15sp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:layout_marginEnd="8dp"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_post"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Post"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:backgroundTint="@color/deepblue"
+            android:textSize="15sp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:layout_marginStart="8dp"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton" />
+    </LinearLayout>
+</LinearLayout>

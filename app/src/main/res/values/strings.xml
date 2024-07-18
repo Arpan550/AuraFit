@@ -34,9 +34,9 @@
     <string name="reset_password">Reset Password</string>
     <string name="sign_out">Sign Out</string>
     <string name="about">About</string>
-    <string name="chatbot_support">Chat support</string>
+    <string name="chatbot_support">Chatbot support</string>
     <string name="settings">Settings</string>
-    <string name="community">Community</string>
+    <string name="community">Community Post</string>
     <string name="physical_fitness">Physical Fitness</string>
     <string name="mental_fitness">Mental Fitness</string>
     <string name="analytics">Analytics</string>
