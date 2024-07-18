@@ -2,6 +2,7 @@ package com.example.aurafit.bottom_nav_fragments
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -12,16 +13,23 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.aurafit.R
+import com.example.aurafit.adapters.QuestionsAdapter
+import com.example.aurafit.bottom_nav_fragments.mental_fitness.AssessmentDetailsActivity.QuestionModel
 import com.example.aurafit.databinding.FragmentAnalyticsBinding
+import com.example.aurafit.model.SelfAssessment
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.google.android.play.integrity.internal.i
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
+import com.google.gson.reflect.TypeToken
 
 class AnalyticsFragment : Fragment() {
 
@@ -36,6 +44,8 @@ class AnalyticsFragment : Fragment() {
 
     // List to accumulate chart entries for each program duration
     private var pieEntriesList: MutableList<List<PieEntry>> = mutableListOf()
+
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,8 +63,8 @@ class AnalyticsFragment : Fragment() {
 
         userId = auth.currentUser?.uid ?: ""
 
-        val sharedPreferences =
-            requireContext().getSharedPreferences("AnalyticsData", Context.MODE_PRIVATE)
+        sharedPreferences = requireContext().getSharedPreferences("AnalyticsData", Context.MODE_PRIVATE)
+
         val programDuration = sharedPreferences.getInt("program_duration", 0)
         val currentDay = sharedPreferences.getInt("current_day", 1)
 
@@ -71,6 +81,20 @@ class AnalyticsFragment : Fragment() {
         programDurations.forEach { duration ->
             fetchExerciseProgress(duration, currentDay)
         }
+
+        // Retrieve and log assessment results from SharedPreferences
+        val savedResultsJson = sharedPreferences.getString("assessment_results", null)
+        val savedResults = if (savedResultsJson.isNullOrEmpty()) {
+            mutableListOf<Map<String, String>>()
+        } else {
+            try {
+                Gson().fromJson(savedResultsJson, object : TypeToken<List<Map<String, String>>>() {}.type)
+            } catch (e: JsonSyntaxException) {
+                mutableListOf<Map<String, String>>()
+            }
+        }
+
+        Log.d("AnalyticsFragment", "Assessment Results from SharedPreferences: $savedResults")
     }
 
     private fun fetchUserDetails() {
@@ -248,4 +272,5 @@ class AnalyticsFragment : Fragment() {
         // Refresh the chart
         pieChart.notifyDataSetChanged()
     }
+
 }
