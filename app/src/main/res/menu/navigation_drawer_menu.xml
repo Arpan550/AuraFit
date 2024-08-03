@@ -5,9 +5,6 @@
     <item android:id="@+id/nav_friends_community"
         android:title="@string/community"
         android:icon="@drawable/ic_community" />
-    <item android:id="@+id/nav_settings"
-        android:title="@string/settings"
-        android:icon="@drawable/ic_settings" />
     <item android:id="@+id/nav_help_support"
         android:title="@string/chatbot_support"
         android:icon="@drawable/ic_help_center" />

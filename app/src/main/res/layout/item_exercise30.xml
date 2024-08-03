@@ -7,27 +7,30 @@
     <LinearLayout
         android:id="@+id/exercise_layout"
         android:layout_width="match_parent"
-        android:layout_height="115dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="10dp"
-        android:background="?attr/selectableItemBackground">
+        android:background="?attr/selectableItemBackground"
+        android:elevation="2dp">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:paddingEnd="10dp">
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:paddingEnd="16dp">
 
             <TextView
                 android:id="@+id/exercise_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="monospace"
+                android:fontFamily="sans-serif-medium"
                 android:text="Exercise Name"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
-                android:textSize="15sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -35,34 +38,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Repeat 5 times"
-                android:textStyle="bold" />
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp" />
 
             <TextView
                 android:id="@+id/exercise_duration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="01:00 MIN"
-                android:textColor="#ff5722"
-                android:textStyle="bold" />
+                android:textColor="@color/accent_color"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/exercise_gif"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            android:layout_marginEnd="8dp" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:padding="10dp"
-            android:src="@drawable/ic_right_arrow" />
+            android:padding="8dp"
+            android:src="@drawable/ic_right_arrow"/>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/black" />
-
 </LinearLayout>

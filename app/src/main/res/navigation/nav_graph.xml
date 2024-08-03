@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.example.aurafit.bottom_nav_fragments.physical_fitness.exercise.FirstFragment"
+        android:name="com.example.aurafit.ui.bottom_nav_fragments.view.physical_fitness.exercise.FirstFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
 
@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.example.aurafit.bottom_nav_fragments.physical_fitness.exercise.SecondFragment"
+        android:name="com.example.aurafit.ui.bottom_nav_fragments.view.physical_fitness.exercise.SecondFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
 
@@ -33,7 +33,7 @@
 
     <fragment
         android:id="@+id/SecondFragment2"
-        android:name="com.example.aurafit.bottom_nav_fragments.physical_fitness.exercise.SecondFragment2"
+        android:name="com.example.aurafit.ui.bottom_nav_fragments.view.physical_fitness.exercise.SecondFragment2"
         android:label="@string/second_fragment2_label"
         tools:layout="@layout/fragment_second2">
 

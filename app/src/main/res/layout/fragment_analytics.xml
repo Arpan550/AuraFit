@@ -1,155 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:padding="16dp">
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <!-- User Details Section -->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/userPhotoImageView"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img"
+            app:civ_border_color="@color/deepblue"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toTopOf="@+id/userNameTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1" />
+
+        <TextView
+            android:id="@+id/userNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User Name"
+            android:textColor="@color/deepblue"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/userEmailTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userPhotoImageView"
+            app:layout_constraintHorizontal_bias="0.5" />
+
+        <TextView
+            android:id="@+id/userEmailTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User Email"
+            android:textColor="@color/secondary_text_color"
+            android:textSize="16sp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/bmiTitleTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userNameTextView"
+            app:layout_constraintHorizontal_bias="0.5" />
+
+        <!-- BMI Details Section -->
+        <TextView
+            android:id="@+id/bmiTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BMI Details"
+            android:textColor="#AD0743"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/bmiDetailsContainer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userEmailTextView"
+            app:layout_constraintHorizontal_bias="0.5" />
+
+        <LinearLayout
+            android:id="@+id/bmiDetailsContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginTop="20dp"
+            android:elevation="8dp"
+            android:background="@drawable/rounded_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bmiTitleTextView">
+
+            <!-- Weight Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/bmiWeightLabelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="Weight:"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/bmiWeightTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Unknown"
+                    android:textColor="@color/secondary_text_color"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <!-- Height Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/bmiHeightLabelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="Height:"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/bmiHeightTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Unknown"
+                    android:textColor="@color/secondary_text_color"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <!-- BMI Value Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/bmiValueLabelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="BMI Value:"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/bmiValueTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Unknown"
+                    android:textColor="@color/secondary_text_color"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <!-- BMI Category Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/bmiCategoryLabelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="BMI Category:"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/bmiCategoryTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Unknown"
+                    android:textColor="@color/secondary_text_color"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Exercise Progress Section -->
+        <TextView
+            android:id="@+id/exerciseProgressTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Exercise Progress"
+            android:textColor="#0B6F65"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="40dp"
+            app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bmiDetailsContainer"
+            app:layout_constraintHorizontal_bias="0.5" />
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <!-- User Details Section -->
-            <TextView
-                android:id="@+id/userEmailTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="User Email"
-                android:textSize="18sp"
-                android:layout_marginTop="16dp"
-                android:layout_centerHorizontal="true"/>
-
-            <TextView
-                android:id="@+id/userNameTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="User Name"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_below="@id/userEmailTextView"
-                android:layout_marginTop="8dp"
-                android:layout_centerHorizontal="true"/>
-
-            <ImageView
-                android:id="@+id/userPhotoImageView"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_below="@id/userNameTextView"
-                android:layout_marginTop="16dp"
-                android:layout_centerHorizontal="true"/>
-
-            <!-- BMI Details Section -->
-            <TextView
-                android:id="@+id/bmiTitleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="BMI Details"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_below="@id/userPhotoImageView"
-                android:layout_marginTop="32dp"
-                android:layout_centerHorizontal="true"/>
-
-            <TextView
-                android:id="@+id/bmiWeightLabelTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Weight:"
-                android:textSize="18sp"
-                android:layout_below="@id/bmiTitleTextView"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="24dp"/>
-
-            <TextView
-                android:id="@+id/bmiWeightTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Unknown"
-                android:textSize="18sp"
-                android:layout_toEndOf="@id/bmiWeightLabelTextView"
-                android:layout_alignBaseline="@id/bmiWeightLabelTextView"/>
-
-            <TextView
-                android:id="@+id/bmiHeightLabelTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Height:"
-                android:textSize="18sp"
-                android:layout_below="@id/bmiWeightLabelTextView"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="24dp"/>
-
-            <TextView
-                android:id="@+id/bmiHeightTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Unknown"
-                android:textSize="18sp"
-                android:layout_toEndOf="@id/bmiHeightLabelTextView"
-                android:layout_alignBaseline="@id/bmiHeightLabelTextView"/>
-
-            <TextView
-                android:id="@+id/bmiValueLabelTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="BMI Value:"
-                android:textSize="18sp"
-                android:layout_below="@id/bmiHeightLabelTextView"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="24dp"/>
-
-            <TextView
-                android:id="@+id/bmiValueTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Unknown"
-                android:textSize="18sp"
-                android:layout_toEndOf="@id/bmiValueLabelTextView"
-                android:layout_alignBaseline="@id/bmiValueLabelTextView"/>
-
-            <TextView
-                android:id="@+id/bmiCategoryLabelTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="BMI Category:"
-                android:textSize="18sp"
-                android:layout_below="@id/bmiValueLabelTextView"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="24dp"/>
-
-            <TextView
-                android:id="@+id/bmiCategoryTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Unknown"
-                android:textSize="18sp"
-                android:layout_toEndOf="@id/bmiCategoryLabelTextView"
-                android:layout_alignBaseline="@id/bmiCategoryLabelTextView"/>
-
-            <!-- Exercise Progress Section -->
-            <TextView
-                android:id="@+id/exerciseProgressTitleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Exercise Progress"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_below="@id/bmiCategoryTextView"
-                android:layout_marginTop="32dp"
-                android:layout_centerHorizontal="true"/>
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/exerciseProgressTitleTextView">
 
             <LinearLayout
                 android:id="@+id/cardsContainer"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_below="@id/exerciseProgressTitleTextView"
-                android:layout_marginTop="16dp"/>
-
-        </RelativeLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-</RelativeLayout>
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:elevation="8dp"/>
+        </HorizontalScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,91 +1,68 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="8dp"
-    android:background="@drawable/bg_header_layout"
-    android:elevation="8dp">
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
 
-    <com.google.android.material.card.MaterialCardView
+    <LinearLayout
+        android:id="@+id/music_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
-        android:layout_margin="2dp">
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/music_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_vertical"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img"
+            android:layout_marginEnd="16dp"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="16dp">
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
 
-            <ImageView
-                android:id="@+id/music_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:scaleType="centerCrop"
+            <TextView
+                android:id="@+id/music_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Music Title"
+                android:textSize="18sp"
+                android:gravity="center_vertical"
                 android:layout_gravity="center_vertical"
-                app:srcCompat="@drawable/img"
-                android:padding="4dp"
-                android:elevation="4dp" />
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_marginBottom="4dp" />
 
-            <LinearLayout
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/music_description"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingStart="16dp"
-                android:paddingTop="4dp"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:id="@+id/music_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Music Title"
-                    android:textSize="18sp"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="4dp"
-                    android:maxLines="1"
-                    android:ellipsize="end"/>
-
-                <TextView
-                    android:id="@+id/music_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Description of the music..."
-                    android:textSize="14sp"
-                    android:textColor="@android:color/darker_gray"
-                    android:maxLines="2"
-                    android:ellipsize="end"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center">
-
-                <ImageButton
-                    android:id="@+id/btn_play"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:src="@drawable/ic_play_arrow"
-                    android:layout_marginBottom="8dp"
-                    app:tint="@color/primaryColor" />
-
-                <ImageButton
-                    android:id="@+id/btn_pause"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:src="@drawable/ic_pause"
-                    app:tint="@color/primaryColor" />
-            </LinearLayout>
+                android:text="Description of the music..."
+                android:textSize="14sp"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/darkGray"
+                android:maxLines="2"
+                android:ellipsize="end" />
         </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-</LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btn_play_pause"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_play_arrow"
+            app:tint="@color/primaryColor"
+            android:layout_gravity="center_vertical" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.aurafit.R
 import com.example.aurafit.model.PostModel
 
-class PostAdapter(private val context: Context, private val postList: ArrayList<PostModel>) :
+class PostAdapter(private val context: Context, private var postList: MutableList<PostModel>) :
     RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
@@ -39,6 +39,12 @@ class PostAdapter(private val context: Context, private val postList: ArrayList<
 
     override fun getItemCount(): Int {
         return postList.size
+    }
+
+    fun updatePosts(newPosts: List<PostModel>) {
+        postList.clear()
+        postList.addAll(newPosts)
+        notifyDataSetChanged()
     }
 
     inner class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

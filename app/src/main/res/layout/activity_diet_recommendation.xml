@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.bottom_nav_fragments.view.physical_fitness.diet_plan.DietRecommendationActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,7 +14,7 @@
         <!-- Age -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_age"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Age">
@@ -22,14 +24,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:maxLength="3" />
-
+                android:maxLength="3"
+                android:importantForAccessibility="yes" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Weight -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_weight"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Weight (kg)">
@@ -38,14 +40,14 @@
                 android:id="@+id/et_weight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal" />
-
+                android:inputType="numberDecimal"
+                android:importantForAccessibility="yes" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Height -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_height"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Height (cm)">
@@ -54,14 +56,14 @@
                 android:id="@+id/et_height"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal" />
-
+                android:inputType="numberDecimal"
+                android:importantForAccessibility="yes" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- BMI Value -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_bmi_label"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="BMI Value">
@@ -70,14 +72,16 @@
                 android:id="@+id/et_bmi_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal" />
-
+                android:inputType="numberDecimal"
+                android:importantForAccessibility="yes"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Activity Level -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_activity_level"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Activity Level">
@@ -86,14 +90,13 @@
                 android:id="@+id/et_activity_level"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text" />
-
+                android:importantForAccessibility="yes" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Health Conditions -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_health_conditions"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Health Conditions">
@@ -102,14 +105,15 @@
                 android:id="@+id/et_health_conditions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textMultiLine" />
-
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                android:importantForAccessibility="yes" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Fitness Goals -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_fitness_goals"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Fitness Goals">
@@ -118,8 +122,9 @@
                 android:id="@+id/et_fitness_goals"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textMultiLine" />
-
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                android:importantForAccessibility="yes" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Button to Submit -->
@@ -127,23 +132,24 @@
             android:id="@+id/btn_submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@android:color/white"
             android:textStyle="bold"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/button_background"
-            android:text="Get diet recommendations" />
+            android:text="Get Diet Recommendations" />
 
         <!-- Button to Check BMI -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_check_bmi"
             android:layout_width="match_parent"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/button_background"
             android:layout_height="wrap_content"
-            android:text="Auto fill BMI Info" />
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/button_background"
+            android:text="Auto Fill BMI Info" />
 
+        <!-- Recommendations Header -->
         <TextView
             android:id="@+id/recommendationHeaderTV"
             android:layout_width="match_parent"
@@ -152,9 +158,10 @@
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textAllCaps="true"
-            android:layout_marginTop="20dp"
-            android:visibility="invisible"/>
+            android:layout_marginTop="24dp"
+            android:visibility="gone"/>
+
+        <!-- Recommendations Text -->
         <TextView
             android:id="@+id/textViewRecommendations"
             android:layout_width="match_parent"
@@ -162,15 +169,9 @@
             android:background="@drawable/bg_message_bot"
             android:textColor="@android:color/black"
             android:textSize="16sp"
-            android:paddingStart="12dp"
-            android:paddingTop="8dp"
-            android:paddingEnd="12dp"
-            android:visibility="invisible"
-            android:layout_marginTop="10dp"
-            android:paddingBottom="8dp"
-            android:maxWidth="250dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="4dp" />
+            android:padding="12dp"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"/>
 
     </LinearLayout>
 </ScrollView>

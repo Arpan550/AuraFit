@@ -1,19 +1,16 @@
 package com.example.aurafit.adapters
 
-
 import android.app.ProgressDialog
 import android.content.Context
 import android.media.MediaPlayer
-import android.media.audiofx.Visualizer
 import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.SeekBar
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageButton
 import com.example.aurafit.R
 import com.example.aurafit.model.Meditation
 import com.google.firebase.storage.FirebaseStorage
@@ -24,56 +21,73 @@ class MeditationAdapter(context: Context, private val meditations: List<Meditati
 
     private var mediaPlayer: MediaPlayer? = null
     private var lastPlayedPosition: Int = -1
-    private var loadingDialog: ProgressDialog? = null
-    private var playbackDialog: ProgressDialog? = null
-    private var durationTextView: TextView? = null
-    private var seekBar: SeekBar? = null
-    private var playPauseImageView: ImageView? = null
-    private var isPlaying: Boolean = false
-    private var isPaused: Boolean = false
-    private var playbackHandler: Handler? = null
+    private var handler: Handler? = null
     private val updateProgressRunnable = Runnable { updateProgress() }
-
-    // Visualizer variables
-    private var visualizer: Visualizer? = null
-    private var visualizerEnabled: Boolean = false
+    private var currentlyPlayingView: View? = null
+    private var progressDialog: ProgressDialog? = null
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_meditation, parent, false)
 
         val titleTextView = view.findViewById<TextView>(R.id.titleTextView)
         val descriptionTextView = view.findViewById<TextView>(R.id.descriptionTextView)
-        val playImageView = view.findViewById<ImageView>(R.id.playImageView)
+        val playPauseButton = view.findViewById<AppCompatImageButton>(R.id.playImageView)
+        val container = view.findViewById<LinearLayout>(R.id.container)
 
         val meditation = getItem(position)
         titleTextView.text = meditation?.title
         descriptionTextView.text = meditation?.description
 
-        playImageView.setOnClickListener {
-            // Play audio for the clicked meditation
-            meditation?.let {
-                showLoadingDialog()
-                fetchAndPrepareAudio(it.audioUrl, position)
+        playPauseButton.setOnClickListener {
+            if (lastPlayedPosition == position && mediaPlayer?.isPlaying == true) {
+                pauseAudio(playPauseButton, container)
+            } else {
+                playAudio(meditation?.audioUrl, position, playPauseButton, container)
             }
+        }
+
+        // Highlight the currently playing item
+        if (lastPlayedPosition == position && mediaPlayer?.isPlaying == true) {
+            container.setBackgroundResource(R.drawable.border_visualizer)
+            playPauseButton.setImageResource(R.drawable.ic_pause)
+        } else {
+            container.setBackgroundResource(0)
+            playPauseButton.setImageResource(R.drawable.ic_play_arrow)
         }
 
         return view
     }
 
-    private fun fetchAndPrepareAudio(audioFileName: String, position: Int) {
+    private fun playAudio(audioFileName: String?, position: Int, playPauseButton: AppCompatImageButton, container: LinearLayout) {
+        if (audioFileName == null) return
+
+        // Show progress dialog
+        showProgressDialog()
+
+        // Pause currently playing audio if a new item is played
+        if (lastPlayedPosition != -1 && lastPlayedPosition != position && mediaPlayer?.isPlaying == true) {
+            mediaPlayer?.pause()
+            currentlyPlayingView?.findViewById<AppCompatImageButton>(R.id.playImageView)?.setImageResource(R.drawable.ic_play_arrow)
+            currentlyPlayingView?.findViewById<LinearLayout>(R.id.container)?.setBackgroundResource(0)
+        }
+
+        fetchAndPrepareAudio(audioFileName, position, playPauseButton, container)
+    }
+
+    private fun fetchAndPrepareAudio(audioFileName: String, position: Int, playPauseButton: AppCompatImageButton, container: LinearLayout) {
         val storage = FirebaseStorage.getInstance()
         val audioRef: StorageReference = storage.reference.child("meditation_audios/$audioFileName")
 
         audioRef.downloadUrl.addOnSuccessListener { uri ->
-            prepareAudio(uri.toString(), position)
+            prepareAudio(uri.toString(), position, playPauseButton, container)
         }.addOnFailureListener {
             // Handle any errors
             it.printStackTrace()
-            dismissLoadingDialog()
+            dismissProgressDialog()
         }
     }
 
-    private fun prepareAudio(audioUrl: String, position: Int) {
+    private fun prepareAudio(audioUrl: String, position: Int, playPauseButton: AppCompatImageButton, container: LinearLayout) {
         mediaPlayer?.release()
         mediaPlayer = MediaPlayer().apply {
             try {
@@ -81,106 +95,52 @@ class MeditationAdapter(context: Context, private val meditations: List<Meditati
                 prepareAsync()
                 setOnPreparedListener {
                     it.start()
-                    this@MeditationAdapter.isPlaying = true
-                    isPaused = false
                     lastPlayedPosition = position
-                    dismissLoadingDialog()
-                    showPlaybackDialog(meditations[position])
-                    updateProgress()
+                    currentlyPlayingView?.findViewById<LinearLayout>(R.id.container)?.setBackgroundResource(0)
+                    container.setBackgroundResource(R.drawable.border_visualizer)
+                    currentlyPlayingView = container
+                    playPauseButton.setImageResource(R.drawable.ic_pause)
+                    handler = Handler()
+                    handler?.postDelayed(updateProgressRunnable, 1000)
+                    dismissProgressDialog()
                 }
                 setOnCompletionListener {
-                    this@MeditationAdapter.isPlaying = false
-                    isPaused = false
-                    dismissPlaybackDialog()
+                    handler?.removeCallbacks(updateProgressRunnable)
+                    container.setBackgroundResource(0)
+                    playPauseButton.setImageResource(R.drawable.ic_play_arrow)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                dismissLoadingDialog()
+                dismissProgressDialog()
             }
         }
     }
 
-    private fun showLoadingDialog() {
-        loadingDialog?.dismiss()
-        loadingDialog = ProgressDialog(context)
-        loadingDialog?.apply {
-            setMessage("Loading Audio...")
-            setCancelable(false)
-            show()
-        }
-    }
-
-    private fun dismissLoadingDialog() {
-        loadingDialog?.dismiss()
-        loadingDialog = null
-    }
-
-    private fun showPlaybackDialog(meditation: Meditation) {
-        playbackDialog?.dismiss()
-        playbackDialog = ProgressDialog(context)
-        playbackDialog?.apply {
-            setMessage("Playing ${meditation.title}")
-            setCancelable(false)
-            show()
-        }
-    }
-
-    private fun dismissPlaybackDialog() {
-        playbackDialog?.dismiss()
-        playbackDialog = null
-    }
-
-    private fun pauseAudio() {
+    private fun pauseAudio(playPauseButton: AppCompatImageButton, container: LinearLayout) {
         mediaPlayer?.pause()
-        isPaused = true
-        playPauseImageView?.setImageResource(R.drawable.ic_play_arrow)
-        playbackHandler?.removeCallbacks(updateProgressRunnable)
-    }
-
-    private fun resumeAudio() {
-        mediaPlayer?.start()
-        isPlaying = true
-        isPaused = false
-        playPauseImageView?.setImageResource(R.drawable.ic_pause)
-        updateProgress()
+        playPauseButton.setImageResource(R.drawable.ic_play_arrow)
+        container.setBackgroundResource(0) // Hide visualizer when paused
+        handler?.removeCallbacks(updateProgressRunnable)
     }
 
     private fun updateProgress() {
         mediaPlayer?.let {
-            durationTextView?.text = formatDuration(it.currentPosition.toLong()) + "/" + formatDuration(it.duration.toLong())
-            seekBar?.max = it.duration
-            seekBar?.progress = it.currentPosition
+            // Update UI components related to the progress of the audio
         }
-        playbackHandler = Handler()
-        playbackHandler?.postDelayed(updateProgressRunnable, 1000)
+        handler?.postDelayed(updateProgressRunnable, 1000)
     }
 
-    private fun formatDuration(durationMs: Long): String {
-        val seconds = durationMs / 1000
-        val minutes = seconds / 60
-        val remainingSeconds = seconds % 60
-        return String.format("%02d:%02d", minutes, remainingSeconds)
+    private fun showProgressDialog() {
+        if (progressDialog == null) {
+            progressDialog = ProgressDialog(context).apply {
+                setMessage("Loading audio...")
+                setCancelable(false)
+            }
+        }
+        progressDialog?.show()
     }
 
-    override fun getViewTypeCount(): Int {
-        return count
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return position
-    }
-
-    override fun notifyDataSetChanged() {
-        super.notifyDataSetChanged()
-        // Reset last played position when data set changes
-        lastPlayedPosition = -1
-    }
-
-    override fun getItem(position: Int): Meditation? {
-        return super.getItem(position)
-    }
-
-    override fun getCount(): Int {
-        return super.getCount()
+    private fun dismissProgressDialog() {
+        progressDialog?.dismiss()
     }
 }

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.aurafit.R
-import com.example.aurafit.bottom_nav_fragments.mental_fitness.AssessmentDetailsActivity
+import com.example.aurafit.ui.bottom_nav_fragments.view.mental_fitness.AssessmentDetailsActivity
 
 class QuestionsAdapter : ListAdapter<AssessmentDetailsActivity.QuestionModel, QuestionsAdapter.QuestionViewHolder>(QuestionDiffCallback()) {
 

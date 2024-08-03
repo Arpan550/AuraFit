@@ -1,91 +1,102 @@
 package com.example.aurafit.adapters
 
-import android.app.Activity
+import android.content.Context
 import android.media.MediaPlayer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.aurafit.R
-import com.example.aurafit.model.music.Data
+import com.example.aurafit.model.music.Data // Ensure this import is correct
 
 class MusicRecyclerViewAdapter(
-    private val context: Activity,
-    private val dataList: List<Data>,
+    private val context: Context,
+    private val musicList: List<Data>,
     private val mediaPlayer: MediaPlayer
-) : RecyclerView.Adapter<MusicRecyclerViewAdapter.MyViewHolder>() {
+) : RecyclerView.Adapter<MusicRecyclerViewAdapter.MusicViewHolder>() {
 
     private var currentPlayingPosition = -1
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView = LayoutInflater.from(context).inflate(R.layout.item_music, parent, false)
-        return MyViewHolder(itemView)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MusicViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.item_music, parent, false)
+        return MusicViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: MusicViewHolder, position: Int) {
+        val music = musicList[position]
+        holder.bind(music, position)
     }
 
     override fun getItemCount(): Int {
-        return dataList.size
+        return musicList.size
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentData = dataList[position]
-        holder.bind(currentData)
+    inner class MusicViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val musicImage: ImageView = itemView.findViewById(R.id.music_image)
+        private val musicTitle: TextView = itemView.findViewById(R.id.music_title)
+        private val musicDescription: TextView = itemView.findViewById(R.id.music_description)
+        private val playPauseButton: ImageButton = itemView.findViewById(R.id.btn_play_pause)
+        private val container: LinearLayout = itemView.findViewById(R.id.music_container)
 
-        // Check if this item is currently playing
-        if (position == currentPlayingPosition) {
-            // Highlight or animate the currently playing item
-            holder.itemView.setBackgroundResource(R.drawable.bg_playing_item) // Example: Change background
-        } else {
-            holder.itemView.setBackgroundResource(android.R.color.transparent) // Reset background
-        }
+        fun bind(music: Data, position: Int) {
+            // Load music image using Glide
+            Glide.with(context)
+                .load(music.album.cover)
+                .placeholder(R.drawable.img)
+                .error(R.drawable.img)
+                .into(musicImage)
 
-        // Play button click listener
-        holder.play.setOnClickListener {
-            playMusic(currentData.preview)
-            currentPlayingPosition = holder.adapterPosition // Update current playing position
-            notifyDataSetChanged() // Update UI to reflect the change
-        }
+            musicTitle.text = music.title
+            musicDescription.text = music.artist.name
 
-        // Pause button click listener
-        holder.pause.setOnClickListener {
-            if (mediaPlayer.isPlaying) {
-                mediaPlayer.pause()
-                currentPlayingPosition = -1 // Reset current playing position
-                notifyDataSetChanged() // Update UI to reflect the change
+            playPauseButton.setOnClickListener {
+                if (mediaPlayer.isPlaying && currentPlayingPosition == position) {
+                    mediaPlayer.pause()
+                    playPauseButton.setImageResource(R.drawable.ic_play_arrow)
+                    container.setBackgroundResource(0) // Hide visualizer
+                } else {
+                    playMusic(music.preview, position)
+                    playPauseButton.setImageResource(R.drawable.ic_pause)
+                    container.setBackgroundResource(R.drawable.music_border_visualizer) // Show visualizer
+                }
+            }
+
+            // Update the UI based on the current playing state
+            if (currentPlayingPosition == position) {
+                if (mediaPlayer.isPlaying) {
+                    playPauseButton.setImageResource(R.drawable.ic_pause)
+                    container.setBackgroundResource(R.drawable.music_border_visualizer) // Show visualizer
+                } else {
+                    playPauseButton.setImageResource(R.drawable.ic_play_arrow)
+                    container.setBackgroundResource(0) // Hide visualizer
+                }
+            } else {
+                playPauseButton.setImageResource(R.drawable.ic_play_arrow)
+                container.setBackgroundResource(0) // Hide visualizer
             }
         }
-    }
 
-
-    private fun playMusic(url: String) {
-        try {
+        private fun playMusic(url: String, position: Int) {
             mediaPlayer.reset()
             mediaPlayer.setDataSource(url)
             mediaPlayer.prepare()
             mediaPlayer.start()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
+            currentPlayingPosition = position
 
-    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val musicImage: ImageView = itemView.findViewById(R.id.music_image)
-        val musicTitle: TextView = itemView.findViewById(R.id.music_title)
-        val musicDescription: TextView = itemView.findViewById(R.id.music_description)
-        val play: ImageButton = itemView.findViewById(R.id.btn_play)
-        val pause: ImageButton = itemView.findViewById(R.id.btn_pause)
+            // Notify the adapter to update play/pause buttons
+            notifyDataSetChanged()
 
-        fun bind(data: Data) {
-            musicTitle.text = data.title
-            musicDescription.text = data.artist.name
-
-            // Load image using Glide
-            Glide.with(context)
-                .load(data.album.cover_medium)
-                .into(musicImage)
+            mediaPlayer.setOnCompletionListener {
+                currentPlayingPosition = -1
+                notifyDataSetChanged()
+                container.setBackgroundResource(0) // Hide visualizer
+                playPauseButton.setImageResource(R.drawable.ic_play_arrow)
+            }
         }
     }
 }

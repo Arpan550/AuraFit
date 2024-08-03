@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".bottom_nav_fragments.physical_fitness.diet_plan.BMIDietActivity">
+    tools:context=".ui.bottom_nav_fragments.view.physical_fitness.diet_plan.BMIDietActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
@@ -14,7 +14,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,34 +26,34 @@
             <ImageView
                 android:id="@+id/headerImage"
                 android:layout_width="100dp"
-                android:layout_height="150dp"
-                android:layout_marginTop="30dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/bmi_header"
-                android:layout_gravity="center"/>
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bmi_header"/>
 
             <TextView
                 android:id="@+id/headerTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:padding="20dp"
+                android:layout_marginTop="16dp"
+                android:padding="16dp"
                 android:textColor="@color/deepblue"
                 android:text="@string/bmi_diet_title"
                 android:textSize="24sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:gravity="start"/>
 
             <TextView
                 android:id="@+id/headerDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="20dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:text="@string/bmi_diet_description"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textColor="@color/darkGray"/>
 
             <LinearLayout
                 android:id="@+id/bmiCalculatorContainer"
@@ -60,7 +61,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp"
-                android:background="@color/white">
+                android:background="@color/white"
+                android:elevation="4dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_collapseMode="parallax">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -76,8 +81,10 @@
                         android:id="@+id/input_weight"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Enter your weight (in kg)"
-                        android:inputType="numberDecimal" />
+                        android:hint="Enter your weight (kg)"
+                        android:inputType="numberDecimal"
+                        android:importantForAccessibility="yes"
+                        android:contentDescription="Weight input field"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -94,8 +101,10 @@
                         android:id="@+id/input_height"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Enter your height (in m)"
-                        android:inputType="numberDecimal" />
+                        android:hint="Enter your height (m)"
+                        android:inputType="numberDecimal"
+                        android:importantForAccessibility="yes"
+                        android:contentDescription="Height input field"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -104,7 +113,10 @@
                     android:layout_height="wrap_content"
                     android:text="Calculate BMI"
                     android:background="@drawable/button_background"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white"
+                    android:layout_marginTop="16dp"
+                    android:contentDescription="Calculate BMI button"
+                    app:cornerRadius="8dp"/>
 
                 <TextView
                     android:id="@+id/bmiResult"
@@ -112,9 +124,9 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textStyle="bold|italic"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:layout_marginTop="12dp"
-                    android:padding="12dp"
+                    android:padding="16dp"
                     android:gravity="center"/>
             </LinearLayout>
 
@@ -123,7 +135,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="8dp"/>
+                android:padding="16dp"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

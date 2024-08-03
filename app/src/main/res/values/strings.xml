@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">AuraFit</string>
     <string name="app_logo">app logo</string>
     <string name="name">Enter your name</string>
@@ -69,6 +69,8 @@
     <string name="next">next\n</string>
     <string name="continuee">Continue\n</string>
     <string name="continue_program">Continue\n</string>
-
+    <string name="add_new_post">Add new post\n</string>
+    <!-- User Guide Heading -->
+    <string name="user_guide_title">User Guide</string>
 
 </resources>

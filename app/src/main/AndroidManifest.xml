@@ -7,14 +7,14 @@
         android:required="false" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -25,15 +25,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AuraFit"
         tools:targetApi="31">
-        <activity
-            android:name=".drawer.NewPostActivity"
-            android:exported="false" />
-        <activity
-            android:name=".bottom_nav_fragments.physical_fitness.diet_plan.DietRecommendationActivity"
-            android:exported="false" />
 
+
+        <!-- Ensure permissions for foreground service and location are declared -->
         <receiver
-            android:name=".bottom_nav_fragments.physical_fitness.exercise.receiver.MidnightUpdateReceiver"
+            android:name=".ui.bottom_nav_fragments.view.physical_fitness.exercise.receiver.MidnightUpdateReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -42,54 +38,59 @@
         </receiver>
 
         <activity
-            android:name=".QuestionUploadToFireStore"
+            android:name=".ui.main.QuestionUploadToFireStore"
             android:exported="true" />
         <activity
-            android:name=".bottom_nav_fragments.mental_fitness.AssessmentDetailsActivity"
+            android:name=".ui.bottom_nav_fragments.view.mental_fitness.AssessmentDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".bottom_nav_fragments.mental_fitness.SelfAssessmentActivity"
+            android:name=".ui.bottom_nav_fragments.view.mental_fitness.MindCareActivity"
             android:exported="false" />
         <activity
-            android:name=".bottom_nav_fragments.mental_fitness.MeditationActivity"
+            android:name=".ui.bottom_nav_fragments.view.mental_fitness.MeditationActivity"
             android:exported="false" />
         <activity
-            android:name=".bottom_nav_fragments.mental_fitness.MindfulnessActivity"
+            android:name=".ui.bottom_nav_fragments.view.mental_fitness.MindfulnessActivity"
             android:exported="false" />
         <activity
-            android:name=".bottom_nav_fragments.physical_fitness.diet_plan.BMICategoryDetailActivity"
+            android:name=".ui.bottom_nav_fragments.view.physical_fitness.diet_plan.BMICategoryDetailActivity"
+            android:exported="false" />
+        <activity android:name=".ui.bottom_nav_fragments.view.physical_fitness.diet_plan.DietRecommendationActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".ui.bottom_nav_fragments.view.physical_fitness.diet_plan.FoodDietInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".bottom_nav_fragments.physical_fitness.diet_plan.FoodDietInfoActivity"
+            android:name=".ui.bottom_nav_fragments.view.physical_fitness.diet_plan.BMIDietActivity"
             android:exported="false" />
         <activity
-            android:name=".bottom_nav_fragments.physical_fitness.diet_plan.BMIDietActivity"
+            android:name=".ui.bottom_nav_fragments.view.physical_fitness.diet_plan.DietPlanActivity"
             android:exported="false" />
         <activity
-            android:name=".bottom_nav_fragments.physical_fitness.diet_plan.DietPlanActivity"
+            android:name=".ui.bottom_nav_fragments.view.physical_fitness.exercise.ExerciseDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".bottom_nav_fragments.physical_fitness.exercise.ExerciseDetailsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".bottom_nav_fragments.physical_fitness.exercise.ExerciseActivity"
+            android:name=".ui.bottom_nav_fragments.view.physical_fitness.exercise.ExerciseActivity"
             android:exported="false"
             android:theme="@style/Theme.AuraFit" />
         <activity
-            android:name=".bottom_nav_fragments.physical_fitness.music.MusicActivity"
+            android:name=".ui.bottom_nav_fragments.view.physical_fitness.music.MusicActivity"
             android:exported="false" />
         <activity
-            android:name=".drawer.AboutActivity"
+            android:name=".ui.drawer.view.AboutActivity"
+            android:exported="false" />
+        <activity android:name=".ui.drawer.view.NewPostActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".ui.drawer.view.CommunitySupportActivity"
             android:exported="false" />
         <activity
-            android:name=".drawer.CommunitySupportActivity"
-            android:exported="false" />
-        <activity
-            android:name=".drawer.HelpSupportActivity"
+            android:name=".ui.drawer.view.ChatSupportActivity"
             android:exported="true" />
         <activity
-            android:name=".drawer.SettingsActivity"
-            android:exported="false" /> <!-- Facebook SDK Meta-data -->
+            android:name=".ui.drawer.view.SettingsActivity"
+            android:exported="false" />
+        <!-- Facebook SDK Meta-data -->
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -104,32 +105,29 @@
             android:name="com.facebook.CustomTabActivity"
             android:exported="true" />
         <activity
-            android:name=".authentication.DataConfirmationActivity"
+            android:name=".ui.authentication.view.DataConfirmationActivity"
             android:exported="false" />
         <activity
-            android:name=".authentication.WelcomeActivity"
-            android:exported="true" />
-        <activity
-            android:name=".authentication.LoginActivity"
+            android:name=".ui.authentication.view.WelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".authentication.SignUpActivity"
+            android:name=".ui.authentication.view.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.authentication.view.SignUpActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>

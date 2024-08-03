@@ -1,21 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="18dp"
-    android:layout_marginTop="30dp">
+    android:padding="16dp"
+    android:background="@color/white">
 
     <!-- Image Placeholder -->
     <ImageView
         android:id="@+id/image_post"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="300dp"
         android:src="@drawable/img"
         android:scaleType="centerCrop"
         android:background="@color/light_gray"
-        android:padding="16dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"/>
 
     <!-- Caption Input -->
@@ -23,31 +23,32 @@
         android:id="@+id/editText_caption"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Write here"
+        android:hint="Write your caption here..."
         android:inputType="textMultiLine"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
         android:padding="12dp"
         android:background="@drawable/edittext_bg"
-        android:minLines="2"
+        android:minLines="3"
         android:maxLines="6"
-        android:minHeight="50dp" />
+        android:minHeight="60dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"/>
 
+    <!-- Description Text -->
     <TextView
-        android:padding="12dp"
-        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Share your thoughts and experiences with others"
-        android:layout_marginTop="10dp"/>
-
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp"
+        android:padding="8dp"/>
 
     <!-- Buttons -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="16dp">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonCancel"
@@ -58,13 +59,10 @@
             android:textColor="@color/white"
             android:textStyle="bold"
             android:backgroundTint="@color/black"
-            android:textSize="15sp"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
+            android:textSize="16sp"
+            android:padding="12dp"
             android:layout_marginEnd="8dp"
-            style="@style/Widget.MaterialComponents.Button.UnelevatedButton" />
+            android:layout_marginBottom="8dp"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_post"
@@ -75,12 +73,10 @@
             android:textColor="@color/white"
             android:textStyle="bold"
             android:backgroundTint="@color/deepblue"
-            android:textSize="15sp"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
+            android:textSize="16sp"
+            android:padding="12dp"
             android:layout_marginStart="8dp"
-            style="@style/Widget.MaterialComponents.Button.UnelevatedButton" />
+            android:layout_marginBottom="8dp"/>
     </LinearLayout>
+
 </LinearLayout>

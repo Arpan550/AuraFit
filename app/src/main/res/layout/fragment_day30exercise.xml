@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@color/light_deepblue">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fitness Challenge - 30-Day Program"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/deepblue"
+        android:paddingBottom="12dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Daily 30-Minute Workout to improve your fitness. This program includes a variety of exercises designed to challenge and enhance your physical fitness."
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:lineSpacingExtra="4dp"/>
+</LinearLayout>

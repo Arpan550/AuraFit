@@ -9,7 +9,7 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import com.example.aurafit.R
-import com.example.aurafit.bottom_nav_fragments.physical_fitness.exercise.ExerciseDetailsActivity
+import com.example.aurafit.ui.bottom_nav_fragments.view.physical_fitness.exercise.ExerciseDetailsActivity
 import com.example.aurafit.model.MindfulnessExercise
 
 class MindfulnessExerciseAdapter(private val context: Context, private val exercises: List<MindfulnessExercise>) : BaseAdapter() {

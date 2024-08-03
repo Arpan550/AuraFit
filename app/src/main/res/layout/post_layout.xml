@@ -3,44 +3,55 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/white">
 
+    <!-- User Info Section -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="12dp"
+            android:scaleType="centerCrop"
             android:layout_gravity="start"
-            android:layout_marginEnd="8dp"
-            android:scaleType="centerCrop" />
+            android:layout_marginTop="4dp"/>
 
         <TextView
             android:id="@+id/post_username"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="Username"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="center_vertical"/>
     </LinearLayout>
 
+    <!-- Post Caption -->
     <TextView
         android:id="@+id/post_caption"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Caption"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:lineSpacingExtra="2dp"/>
 
+    <!-- Post Image -->
     <ImageView
         android:id="@+id/post_image"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="8dp"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/img"/>
 
 </LinearLayout>

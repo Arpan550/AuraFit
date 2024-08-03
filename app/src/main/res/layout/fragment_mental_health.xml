@@ -17,7 +17,7 @@
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/bg_physical_fitness"
+            android:src="@drawable/bg_mental_fitness"
             app:tint="@color/button_background_pressed" />
 
         <!-- Exercise CardView -->

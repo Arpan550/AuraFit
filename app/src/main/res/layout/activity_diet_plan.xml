@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:id="@+id/main"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_header_layout"
-    android:layout_gravity="center"
-    tools:context="com.example.aurafit.bottom_nav_fragments.physical_fitness.diet_plan.DietPlanActivity">
+    android:background="@color/light_deepblue"
+    android:padding="16dp"
+    tools:context=".ui.bottom_nav_fragments.view.mental_fitness.MindCareActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:orientation="vertical">
 
         <!-- BMI Diet Section -->
         <com.google.android.material.card.MaterialCardView
@@ -21,33 +21,51 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="8dp">
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp"
+            app:strokeColor="@color/black"
+            app:strokeWidth="1dp"
+            android:clickable="true"
+            android:focusable="true">
 
             <LinearLayout
-                android:id="@+id/bmi_diet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:gravity="center_vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="BMI Diet"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Personalized diet plans based on BMI calculations."
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     android:textColor="@color/black" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_bmi_diet"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:orientation="horizontal"
+                    android:padding="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Learn More"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_background"
+                    tools:ignore="RtlCompat" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
-
 
         <!-- Food Diet Info Section -->
         <com.google.android.material.card.MaterialCardView
@@ -55,29 +73,49 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="8dp">
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp"
+            app:strokeColor="@color/black"
+            app:strokeWidth="1dp"
+            android:clickable="true"
+            android:focusable="true">
 
             <LinearLayout
-                android:id="@+id/food_diet_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:gravity="center_vertical">
+
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Food Diet Info"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Information and details about recommended food diets."
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     android:textColor="@color/black" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_food_diet_info"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:orientation="horizontal"
+                    android:padding="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Learn More"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_background"
+                    tools:ignore="RtlCompat" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -88,32 +126,52 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="8dp">
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp"
+            app:strokeColor="@color/black"
+            app:strokeWidth="1dp"
+            android:clickable="true"
+            android:focusable="true">
 
             <LinearLayout
-                android:id="@+id/diet_recommendation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:gravity="center_vertical">
+
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Diet Recommendation"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Personalized diet recommendations based on health metrics."
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     android:textColor="@color/black" />
 
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_diet_recommendation"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:orientation="horizontal"
+                    android:padding="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Get recommendations"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_background"
+                    tools:ignore="RtlCompat" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
+
 </androidx.core.widget.NestedScrollView>

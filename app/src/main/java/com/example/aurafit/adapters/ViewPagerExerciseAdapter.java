@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.aurafit.bottom_nav_fragments.physical_fitness.exercise.StepsFragment;
-import com.example.aurafit.bottom_nav_fragments.physical_fitness.exercise.TimerFragment;
+import com.example.aurafit.ui.bottom_nav_fragments.view.physical_fitness.exercise.StepsFragment;
+import com.example.aurafit.ui.bottom_nav_fragments.view.physical_fitness.exercise.TimerFragment;
 
 public class ViewPagerExerciseAdapter extends FragmentPagerAdapter {
     private final String exerciseSteps; // Assuming exerciseSteps is a formatted string of steps
